@@ -19,3 +19,15 @@ Route::get('/login', function ()
 {
    return view('login');
 });
+
+Route::get('/baseadmin', function ()
+{
+   return view('baseAdministrador');
+});
+
+
+// Esta no hacerle caso es la vista que habia creado
+Route::get('/basedani', function ()
+{
+   return view('baseAdministradorcopia');
+});
