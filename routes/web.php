@@ -25,6 +25,11 @@ Route::get('/baseadmin', function ()
    return view('baseAdministrador');
 });
 
+Route::get('/prueba', function ()
+{
+   return view('prueba');
+});
+
 
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()

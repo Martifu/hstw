@@ -2,8 +2,8 @@
 
 @section("contenido")
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-xl-6 d-none d-sm-none d-md-block">
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-6 col-xl-6 d-none d-sm-none d-md-block margin-login">
                 <img class="figura" src="{{asset("img/Figura.png")}}">
             </div>
             <div class="col-sm-12 col-md-6 col-xl-6 margin-login">
@@ -34,4 +34,4 @@
             </div>
         </div>
     </div>
-@show
+@stop
