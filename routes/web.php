@@ -25,9 +25,10 @@ Route::get('/baseadmin', function ()
    return view('baseAdministrador');
 });
 
-Route::get('/personas', 'PersonaController@personas');
-Route::get('/tarjetas',function(){
-   return view('asignarTarjetas');
+
+Route::get('/prueba', function ()
+{
+   return view('prueba');
 });
 
 
