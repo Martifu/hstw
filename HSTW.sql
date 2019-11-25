@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`direcciones` (
   `pais` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_persona_idx` (`id_persona` ASC),
-  CONSTRAINT `fk_persona`
+  CONSTRAINT `fk_persona1`
     FOREIGN KEY (`id_persona`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`credito_bancario` (
   PRIMARY KEY (`id`),
   INDEX `fk_credito_idx` (`id_credito` ASC),
   INDEX `fk_institucion_idx` (`id_institucion` ASC),
-  CONSTRAINT `fk_credito`
+  CONSTRAINT `fk_credito1`
     FOREIGN KEY (`id_credito`)
     REFERENCES `hstw`.`credito` (`id`)
     ON DELETE NO ACTION
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`tarjetas_personas` (
   `id_personas` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_personas_idx` (`id_personas` ASC),
-  CONSTRAINT `fk_personas`
+  CONSTRAINT `fk_personas1personas`
     FOREIGN KEY (`id_personas`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION

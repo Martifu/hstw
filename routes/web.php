@@ -25,6 +25,11 @@ Route::get('/baseadmin', function ()
    return view('baseAdministrador');
 });
 
+Route::get('/personas', 'PersonaController@personas');
+Route::get('/tarjetas',function(){
+   return view('asignarTarjetas');
+});
+
 
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()
