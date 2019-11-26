@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/personas','PersonaController@traerpersonas');
+
+Route::POST('/actualizar','PersonaController@actualizarinfo');
+Route::post('/borrarpersona','PersonaController@borrarper');
+
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
@@ -40,3 +45,6 @@ Route::get('/basedani', function ()
 {
    return view('baseAdministradorcopia');
 });
+
+
+

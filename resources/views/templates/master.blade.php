@@ -15,6 +15,7 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/wbn-datepicker.css" rel="stylesheet" />
     <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <link href="/css/stylesdatosgenerales.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 </head>
