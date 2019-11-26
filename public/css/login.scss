@@ -1,7 +1,27 @@
 .figura {
-  width: 90%;
-  height: 123%;
+  width: 79%;
+  margin-left: 0;
 }
+@media (max-width: 1279px) {
+  .figura
+  {
+    width: 100%;
+  }
+}
+@media (max-width: 1080px) {
+  .figura
+  {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .figura
+  {
+    width: 110%;
+  }
+}
+
 .form-bar {
   position: relative;
   display: block;
@@ -197,7 +217,7 @@ label {
 
 .margin-login
 {
-  margin-top:100px;
+  margin-left: -15px;
 }
 
 .tamano-logo

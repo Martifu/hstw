@@ -1,0 +1,52 @@
+.size-logo {
+  width: 100%;
+}
+
+.fondo-logo {
+  background: #ffffff;
+}
+
+.botones-sidebar {
+  padding: 10px;
+  text-align: left;
+}
+
+.btn-desing {
+  background-color: #00c4f1;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.content-info {
+  width: calc(100% - 250px);
+  padding: 40px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/*# sourceMappingURL=baseAdmin.css.map */
