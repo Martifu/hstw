@@ -17,6 +17,7 @@
     <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="css/baseAdmin.scss" rel="stylesheet">
 </head>
 
 <body>
@@ -34,43 +35,43 @@
                 </a>
             </div>
             <ul class="nav">
-                <li class="nav-item active">
+                <li class="nav-item active" id="gestionClientes">
                     <a class="nav-link" href="dashboard.html">
                         <img src="{{asset("img/ic_person_24px.png")}}">
                         <p>Gestionar clientes</p>
                     </a>
                 </li>
-                <li>
+                <li id="calcularPrestamos">
                     <a class="nav-link" href="./user.html">
                         <img src="{{asset("img/ic_shopping_basket_24px.png")}}">
                         <p>Calcular prestamos</p>
                     </a>
                 </li>
-                <li>
+                <li id="buroCredito">
                     <a class="nav-link" href="./table.html">
                         <img src="{{asset("img/ic_import_contacts_24px.png")}}">
                         <p>Buro de credito</p>
                     </a>
                 </li>
-                <li>
-                    <a class="nav-link" href="./typography.html">
+                <li id="reportes">
+                    <a class="nav-link" href="/reportes">
                         <img src="{{asset("img/ic_assignment_24px.png")}}">
                         <p>Reportes</p>
                     </a>
                 </li>
-                <li>
+                <li id="AsignarPrestamos">
                     <a class="nav-link" href="./icons.html">
                         <img src="{{asset("img/ic_work_24px.png")}}">
                         <p>Asignar prestamos</p>
                     </a>
                 </li>
-                <li>
+                <li id="asignarTarjetas">
                     <a class="nav-link" href="/tarjetas">
                         <img src="{{asset("img/ic_payment_24px.png")}}">
                         <p>Asignar tarjetas</p>
                     </a>
                 </li>
-                <li>
+                <li id="cobranza">
                     <a class="nav-link" href="./notifications.html">
                         <img src="{{asset("img/ic_account_balance_24px.png")}}">
                         <p>Cobraza</p>
@@ -95,6 +96,8 @@
 
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="js/administrador.js" type="text/javascript"></script>
+<script src="js/reportes.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/wbn-datepicker.min.js"></script>
