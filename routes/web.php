@@ -15,7 +15,7 @@ Route::get('/tarjetas',function (){
 });
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
 Route::get('/personas','PersonaController@traerpersonas');
-
+Route::POST('/actualizarpersona','PersonaController@traerpersona');
 Route::POST('/actualizar','PersonaController@actualizarinfo');
 Route::post('/borrarpersona','PersonaController@borrarper');
 

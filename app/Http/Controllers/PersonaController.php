@@ -12,28 +12,24 @@ class PersonaController extends Controller
         $personas = Persona::all();
         return $personas;
     }
-
     public function verificaBuro(Request $request){
         $persona = Persona::where('curp','=',$request->curp)->get();
+
 
         return response()->json([
             'success' => true,
             'credito' => 'no',
             'persona' => $persona
         ]);
+
     }
-
-
     public function traerpersonas()
     {
         $Usuarios= Persona::all();
         return view('DatosGenerales')->with('usuarios',$Usuarios);
-
     }
-
     public function actualizarinfo(Request $request)
     {
-
         $persona=Persona::find($request->id);
         $nombre = $request->nombre;
         $apellido_p = $request->apellido_p;
@@ -43,16 +39,29 @@ class PersonaController extends Controller
 
         if($nombre!=null){
             $persona->nombre=$nombre;
-            $persona->save();
         }
-
+        if($apellido_p!=null){
+            $persona->apellido_p=$apellido_p;
+        }
+        if($nacimiento!=null){
+            $persona->fecha_nacimiento=$nacimiento;
+        }
+        if($curp!=null){
+            $persona->curp=$curp;
+        }
+        if($rfc!=null){
+            $persona->rfc=$rfc;
+        }
+        $persona->save();
+        return $persona;
     }
     public function borrarper(Request $request){
         $persona=Persona::find($request->id);
         $persona->delete();
-
     }
-
-
+    public function traerpersona(Request $request){
+        $persona=Persona::find($request->id);
+        return $persona;
+    }
 
 }

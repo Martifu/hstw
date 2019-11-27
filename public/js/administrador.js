@@ -6,6 +6,4 @@ $(document).ready(function () {
         $("#reportes").addClass("active");
         $("#gestionClientes").removeClass("active");
     }
-
-
 });
