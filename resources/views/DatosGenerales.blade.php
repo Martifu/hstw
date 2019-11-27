@@ -16,6 +16,11 @@
             <div class="row text-center align-center">
                 <h5 class="col-sm-12">Clientes</h5>
                 <input class="input-movil form-control col-sm-12" placeholder="Buscar" type="text">
+                <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                </button>
             </div>
         </div>
     </div>
