@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/tarjetas',function (){
-    return view('asignarTarjetas');
-});
-Route::post('verificar-buro', 'PersonaController@verificaBuro');
 Route::get('/', function () {
     return view('base');
 });

@@ -16,6 +16,10 @@ class PersonaController extends Controller
     public function verificaBuro(Request $request){
         $persona = Persona::where('curp','=',$request->curp)->get();
 
-        return $persona;
+        return response()->json([
+            'success' => true,
+            'credito' => 'si',
+            'persona' => $persona
+        ]);
     }
 }
