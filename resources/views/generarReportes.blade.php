@@ -25,7 +25,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <h4 class="p-4">Generar reportes segun las opciones de abajo</h4>
                 <div class="card p-4 m-4" style="max-width: 100%;">
                     <div class="card-header">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 align-self-center" id="cardbuscador">
+            <div class="col-md-6 col-sm-12 align-self-center" id="cardbuscador">
 
             </div>
         </div>

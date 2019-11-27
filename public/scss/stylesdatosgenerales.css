@@ -1,0 +1,51 @@
+.barra-movil {
+  height: 80px;
+}
+
+.button-movil {
+  height: 40px;
+}
+
+.buttonbase {
+  background-color: #03a9f4;
+  border-radius: 73px 73px 73px 73px;
+  color: white;
+  border-color: #03a9f4;
+}
+.buttonbase:hover {
+  color: white;
+  background-color: #00bbff;
+}
+
+@media (max-width: 576px) {
+  .movilhidden {
+    display: none;
+  }
+
+  .buttonbase {
+    display: inline;
+  }
+
+  .caja {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (min-width: 578px) {
+  .pchidden {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .pchidden {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .pchidden {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=stylesdatosgenerales.css.map */

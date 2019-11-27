@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li id="cobranza">
-                    <a class="nav-link" href="./notifications.html">
+                    <a class="nav-link" href="/cobranza">
                         <img src="{{asset("img/ic_account_balance_24px.png")}}">
                         <p>Cobraza</p>
                     </a>
@@ -99,6 +99,7 @@
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/administrador.js" type="text/javascript"></script>
 <script src="js/reportes.js" type="text/javascript"></script>
+<script src="js/cobranza.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/wbn-datepicker.min.js"></script>
