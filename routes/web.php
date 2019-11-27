@@ -23,14 +23,18 @@ Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
-Route::get('/', function () {
-    return view('templates.master');
+Route::get('/', function ()
+{
+    return view('login');
 });
+
 
 Route::get('/login', function ()
 {
    return view('login');
 });
+
+Route::get('/cobranza', "AdministradorController@deudas");
 
 Route::get('pdf','reportespdfController@invoice');
 

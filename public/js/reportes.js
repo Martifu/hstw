@@ -15,7 +15,7 @@ $(document).ready(function () {
         "<div class='col-md-12'>"+
         "<div class='form-group'>"+
         "<label>Fecha de nacimiento: </label>"+
-        "<input type='date' class='form-control' id='fechaNaci' placeholder='' value=''>"+
+        "<input type='date' class='form-control wbn-datepicker' id='date' placeholder='' value=''>"+
         "</div>"+
         "</div>"+
         "<a class='btn-desing btn-fill pull-right' id='verificar' style='color:white'>Generar reporte</a>"+
