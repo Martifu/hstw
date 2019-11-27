@@ -1,0 +1,71 @@
+$colorbuttons: #03a9f4;
+$cwite: white;
+$cblack: black;
+$border-radius-buttons:73px 73px 73px 73px;
+$sm:576px;
+$md:768px;
+$lg:992px;
+$xl:1200px;
+
+
+@mixin buttonbase{
+    background-color: $colorbuttons;
+    border-radius: $border-radius-buttons;
+    color: $cwite;
+    border-color: $colorbuttons;
+    &:hover{
+        color: $cwite;
+        background-color: #00bbff;
+
+    }
+}
+.barra-movil{
+    height: 80px;
+
+}
+.input-movil{
+
+}
+.button-movil{
+    height: 40px;
+}
+
+.buttonbase{
+    @include buttonbase;
+}
+@media (max-width: 576px) {
+
+    .movilhidden{
+        display: none;
+    }
+    .buttonbase{
+        display: inline;
+
+    }
+    .caja{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+
+@media (min-width: 578px) {
+ .pchidden{
+     display: none;
+ }
+
+}
+
+@media (min-width: 992px) {
+    .pchidden{
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .pchidden{
+        display: none;
+    }
+}

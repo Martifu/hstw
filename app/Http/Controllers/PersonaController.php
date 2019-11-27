@@ -18,8 +18,41 @@ class PersonaController extends Controller
 
         return response()->json([
             'success' => true,
-            'credito' => 'si',
+            'credito' => 'no',
             'persona' => $persona
         ]);
     }
+
+
+    public function traerpersonas()
+    {
+        $Usuarios= Persona::all();
+        return view('DatosGenerales')->with('usuarios',$Usuarios);
+
+    }
+
+    public function actualizarinfo(Request $request)
+    {
+
+        $persona=Persona::find($request->id);
+        $nombre = $request->nombre;
+        $apellido_p = $request->apellido_p;
+        $nacimiento = $request->nacimiento;
+        $curp = $request->curp;
+        $rfc = $request->rfc;
+
+        if($nombre!=null){
+            $persona->nombre=$nombre;
+            $persona->save();
+        }
+
+    }
+    public function borrarper(Request $request){
+        $persona=Persona::find($request->id);
+        $persona->delete();
+
+    }
+
+
+
 }
