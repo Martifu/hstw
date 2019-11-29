@@ -28,6 +28,8 @@ class AdministradorController extends Controller
     function deudas()
     {
         $personas = Persona::all();
+      
+        
         return view('cobranza', compact("personas"));
     }
 }
