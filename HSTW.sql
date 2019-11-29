@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`credito` (
   `pago` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_personas_idx` (`id_persona` ASC),
-  CONSTRAINT `fk_personas`
+  CONSTRAINT `fk_personas_4`
     FOREIGN KEY (`id_persona`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`administradores` (
   `password` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_persona_idx` (`id_personas` ASC),
-  CONSTRAINT `fk_persona`
+  CONSTRAINT `fk_persona_1`
     FOREIGN KEY (`id_personas`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`direcciones` (
   `pais` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_persona_idx` (`id_persona` ASC),
-  CONSTRAINT `fk_persona1`
+  CONSTRAINT `fk_persona_2`
     FOREIGN KEY (`id_persona`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION
@@ -136,23 +136,10 @@ CREATE TABLE IF NOT EXISTS `hstw`.`instituciones` (
   `descripcion` VARCHAR(45) NULL,
   `tipo` INT NULL,
   PRIMARY KEY (`id`),
-<<<<<<< HEAD
   INDEX `fo_instituciom_tipo_idx` (`tipo` ASC),
   CONSTRAINT `fo_instituciom_tipo`
     FOREIGN KEY (`tipo`)
     REFERENCES `hstw`.`tipos` (`id`)
-=======
-  INDEX `fk_credito_idx` (`id_credito` ASC),
-  INDEX `fk_institucion_idx` (`id_institucion` ASC),
-  CONSTRAINT `fk_credito1`
-    FOREIGN KEY (`id_credito`)
-    REFERENCES `hstw`.`credito` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_institucion`
-    FOREIGN KEY (`id_institucion`)
-    REFERENCES `hstw`.`instituciones_bancarias` (`id`)
->>>>>>> cffe7815b57b2326111c0655d67d191fc043783f
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -169,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `hstw`.`tarjetas_personas` (
   `id_personas` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_personas_idx` (`id_personas` ASC),
-  CONSTRAINT `fk_personas1personas`
+  CONSTRAINT `fk_personas_3`
     FOREIGN KEY (`id_personas`)
     REFERENCES `hstw`.`personas` (`id`)
     ON DELETE NO ACTION
