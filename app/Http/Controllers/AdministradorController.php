@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Persona;
 use Illuminate\Http\Request;
 use App\Administrador;
 
@@ -22,5 +23,11 @@ class AdministradorController extends Controller
             $respuesta = ["mensaje" => "Error al inicar sesion, usuarion incorrecto o password", "status"=>"400"];
             return $respuesta;
         }
+    }
+
+    function deudas()
+    {
+        $personas = Persona::all();
+        return view('cobranza', compact("personas"));
     }
 }
