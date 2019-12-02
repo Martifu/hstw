@@ -9,8 +9,18 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
 Route::post('/registrar','PersonaController@nuevapersona');
+
+Route::get('/tarjetas',function (){
+    return view('asignarTarjetas');
+});
+Route::get('/credito',function (){
+    return view('asignarCredito');
+});
+Route::post('verificar-buro', 'PersonaController@verificaBuro');
+
 Route::get('/personas','PersonaController@traerpersonas');
 Route::get('/traerpersonas','PersonaController@personas');
 Route::POST('/actualizarpersona','PersonaController@traerpersona');
@@ -26,6 +36,8 @@ Route::get('/', function ()
     return view('login');
 });
 
+Route::post('checarburo', 'PersonaController@checarburo');
+Route::get('checarburos', 'PersonaController@checarburos');
 
 Route::get('/login', function ()
 {
@@ -44,6 +56,14 @@ Route::get('/reportes', function ()
 });
 
 
+#BURO CREDITO
+
+Route::get('burocredito', function(){
+
+    return view('Burocredito');
+});
+
+Route::get('datosburo', "BuroCreditoController@PersonasBuro");
 
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()

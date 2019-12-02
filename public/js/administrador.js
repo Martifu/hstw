@@ -20,8 +20,4 @@ $(document).ready(function () {
         $("#gestionClientes").removeClass("active");
         $("#reportes").removeClass("active");
     }
-
-
-
-
 });
