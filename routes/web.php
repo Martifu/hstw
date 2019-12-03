@@ -9,7 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/ 
+
+*/
+Route::post('/registrar','PersonaController@nuevapersona');
+
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
@@ -17,7 +20,9 @@ Route::get('/credito',function (){
     return view('asignarCredito');
 });
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
+
 Route::get('/personas','PersonaController@traerpersonas');
+Route::get('/traerpersonas','PersonaController@personas');
 Route::POST('/actualizarpersona','PersonaController@traerpersona');
 Route::POST('/actualizar','PersonaController@actualizarinfo');
 Route::post('/borrarpersona','PersonaController@borrarper');

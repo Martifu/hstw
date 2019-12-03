@@ -9,6 +9,7 @@ use App\MBuroCredito;
 
 class PersonaController extends Controller
 {
+
     public function personas()
     {
 
@@ -66,9 +67,45 @@ class PersonaController extends Controller
         $persona=Persona::find($request->id);
         return $persona;
     }
+
+    public function nuevapersona(Request $request){
+
+        $persona= new Persona();
+        $nombre = $request->nombre;
+        $apellido_p = $request->apellido_p;
+        $apellido_m = $request->apellido_m;
+        $nacimiento = $request->nacimiento;
+        $curp = $request->curp;
+        $rfc = $request->rfc;
+
+        if($nombre!=null){
+            $persona->nombre=$nombre;
+        }
+        if($apellido_p!=null){
+            $persona->apellido_p=$apellido_p;
+        }
+        if($apellido_m!=null){
+            $persona->apellido_m=$apellido_m;
+        }
+        if($nacimiento!=null){
+            $persona->fecha_nacimiento=$nacimiento;
+        }
+        if($curp!=null){
+            $persona->curp=$curp;
+        }
+        if($rfc!=null){
+            $persona->rfc=$rfc;
+        }
+
+        $persona->save();
+        return $persona;
+
+    }
+
     public function checarburo(Request $request)
     {
         $persona =  MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
+
 
         return $persona;
     }

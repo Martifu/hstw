@@ -4,10 +4,10 @@
 
     <nav class="navbar col-md-12 col-sm-12 movilhidden">
         <a class="navbar-brand ">Clientes</a>
-        <form class="form-inline alinline ">
-            <button class="btn btn-info my-sm-0 my-0 buttonbase" type="submit">Buscar</button>
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
+        <div class="d-inline-flex">
+                <button class="btn btn-info  my-sm-0 my-0 buttonbase Agregar" >Agregar</button>
+            <input class="form-control mr-sm-2" id="buscador" type="search" placeholder="Buscar" aria-label="Search">
+        </div>
     </nav>
 
     <!--BUSCADOR EN MOVIL--->
@@ -15,7 +15,7 @@
         <div class=" caja container-fluid barra-movi pchidden nav navbar-default navbar-fixed-top">
             <div class="row text-center align-center">
                 <h5 class="col-sm-12">Clientes</h5>
-                <input class="input-movil form-control col-sm-12" placeholder="Buscar" type="text">
+                <input class="input-movil form-control col-sm-12" placeholder="Agregar" type="text">
                 <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar burger-lines"></span>
@@ -29,11 +29,10 @@
 
 
 
-    <div class="container col-md-12 col-sm-12">
+    <div class="card p-4 m-4">
         <div class="row ">
-            <div class="">
-                <div class="">
-                    <table class="table striped">
+                <div class="card-body">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th class="movilhidden">ID</th>
@@ -41,32 +40,16 @@
                             <th>Apellidos</th>
                             <th class="movilhidden">Fecha de Nacimiento</th>
                             <th class="movilhidden">CURP</th>
-
                         </tr>
                         </thead>
-                        <tbody style="color: black;" class="tabla">
-                        @foreach ($usuarios as $u)
-                            <tr>
-                                <td value="" class="movilhidden" >{{$u->id}}</td>
-                                <td value=""  class="tnom">{{$u->nombre}}</td>
-                                <td value="" class="tapellidos">{{$u->apellido_p}} {{$u->apellido_m}}</td>
-                                <td value=""  class="movilhidden tnacimiento">{{$u->fecha_nacimiento}}</td>
-                                <td value="" class="movilhidden tcurp">{{$u->curp}}</td>
-
-                                <td><button class="btn btn-danger btn-delete" value="{{$u}}"></button></td>
-                                <td><button class="btn btn-info btn-inf" value="{{$u}}"></button></td>
-                                <td><button class="btn btn-primary btn-act"  value="{{$u}}"></button></td>
-
-                            </tr>
-                        @endforeach
+                        <tbody style="color: black;" class="tabla prueba">
 
                         </tbody>
                     </table>
                 </div>
-            </div>
-
         </div>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade modal-inf" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -88,8 +71,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -113,7 +95,7 @@
                         <input name="id" class="id col-md-12" hidden="false">
                         <div class="form-group" style="margin-right: 1%;">
                             <h5>Nombre: </h5>
-                            <input name="nombre" class="n">
+                            <input name="nombre" class="n" style="">
                         </div>
                         <div class="form-group " >
                             <h5>Apellidos:</h5>
@@ -162,8 +144,56 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" name="del" class="btn btn-primary del">eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" name="del" class="btn btn-danger del">eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade modal-create" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Agregar un nuevo cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container row">
+                        @csrf
+                        <div class="form-group col-12 text-center" >
+                            <h5>Nombre: </h5>
+                            <input name="nombre" class="nombren" style="width:100%; ">
+                        </div>
+                        <div class="form-group col-6" style="" >
+                            <h5>Apellido Paterno:</h5>
+                            <input name="apellido_p" class="apellido_pn">
+                        </div>
+                        <div class="form-group col-6" >
+                            <h5>Apellido Materno:</h5>
+                            <input name="apellido_m" class="apellido_mn" style="width: 180px;">
+                        </div>
+                        <div class="form-group col-6">
+                            <h5>RFC:</h5>
+                            <input name="rfc" class="rn" style="">
+                        </div>
+                        <div class="form-group col-6">
+                            <h5>Curp:</h5>
+                            <input name="curp" class="cn"  style="width: 180px;">
+                        </div>
+                        <div class="form-group col-6" style="">
+                            <h5>Fecha de nacimiento:</h5>
+                            <input name="nacimiento" class="nacimienton">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" name="update" class="btn btn-primary reg">Registrar</button>
                 </div>
             </div>
         </div>
@@ -172,12 +202,29 @@
 
 @section('javascript')
     <script>
-
-            $(".btn-inf").click(function () {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/traerpersonas',
+                    dataType:'json',
+                    type:'GET',
+                    success: function(response) {
+                        $.each(response, function (index,elemento) {
+                            $(".prueba").append('<tr>                                <td value='+elemento.id+' class="movilhidden" >'+elemento.id+'</td>\n' +
+                                '                                <td value=""  class="tnom">'+elemento.nombre+'</td>\n' +
+                                '                                <td value="" class="tapellidos">'+elemento.apellido_p+' '+elemento.apellido_m+'</td>\n' +
+                                '                                <td value=""  class="movilhidden tnacimiento">'+elemento.fecha_nacimiento+'</td>\n' +
+                                '                                <td value="" class="movilhidden tcurp">'+elemento.curp+'</td>\n' +
+                                '                                <td><button class="btn btn-danger btn-delete btn-sm" value='+elemento.id+'><i class="fas fa-trash-alt"></i></button></td>\n' +
+                                '                                <td><button class="btn btn-inf btn-warning btn-sm" value='+elemento.id+'><i class="fas fa-eye"></i></button></td>\n' +
+                                '                                <td><button class="btn btn-primary btn-act btn-sm"  value='+elemento.id+'><i class="fas fa-user-edit"></i></button></td>\n' +
+                                '                                <td ></td></tr>')
+                        })
+                    }
+                })
+            });
+            $(".table").on('click','.btn-inf',function () {
                 $(".modal-inf").modal("show");
-                var persona = $(this).val();
-                var perObj = JSON.parse(persona);
-                var id=perObj['id'];
+                var id = $(this).val();
                 var token = $("input[name=_token]").val();
                 $.ajax({
                     url: '/actualizarpersona',
@@ -193,15 +240,15 @@
                         $(".curp").html("CURP: " + response['curp']);
                         $(".rfc").html("RFC: " + response['rfc']);
                     }
-                })
+                });
+
             });
 
 
-            $(".btn-act").click(function () {
+            $(".table").on('click','.btn-act',function () {
                 $(".modal-update").modal("show");
-                var persona = $(this).val();
-                var perObj = JSON.parse(persona);
-                var id=perObj['id'];
+                var id=$(this).val();
+                console.log(id);
                 var token = $("input[name=_token]").val();
 
                 $.ajax({
@@ -220,7 +267,7 @@
                         $("input[name=curp]").attr("placeholder", response['curp']);
                         $("input[name=rfc]").attr("placeholder", response['rfc']);
                     }
-                })
+                });
 
             });
             $(".act").click(function () {
@@ -258,25 +305,15 @@
                         $(".c").attr("placeholder", response["curp"]);
                         $(".r").val("");
                         $(".r").attr("placeholder", response["rfc"]);
-                        $(".tnom").html(response["nombre"]);
-                        $(".tapellidos").html(response["apellido_p"]+ " "+response["apellido_m"]);
-                        $(".tnacimiento").html(response["fecha_nacimiento"]);
-                        $(".tcurp").html(response["curp"]);
-                        $(".tnom").val(response["nombre"]);
-                        $(".tapellidos").val(response["apellido_p"]+ " "+response["apellido_m"]);
-                        $(".tnacimiento").val(response["fecha_nacimiento"]);
-                        $(".tcurp").val(response["curp"]);
-
                     }
-                })
+                });
+                location.reload();
             });
 
 
-            $(".btn-delete").click(function () {
+            $(".table").on('click','.btn-delete',function () {
                 $(".modal-delete").modal("show");
-                var persona = $(this).val();
-                var perObj = JSON.parse(persona);
-                var id=perObj['id'];
+                var id = $(this).val();
                 var token = $("input[name=_token]").val();
                 $.ajax({
                     url: '/actualizarpersona',
@@ -291,21 +328,6 @@
                         $(".idel").val(response['id'])
                     }
                 });
-                $.ajax({
-                    url: '/traerpersonas',
-                    dataType: 'json',
-                    type: 'GET',
-                    data: {
-                        id: id,
-                        _token: token
-                    },
-                    success: function (response) {
-                        $(".elim").html(response['nombre'] + " " + response['apellido_p']+ " " + response['apellido_m']);
-                        $(".idel").val(response['id'])
-                    }
-                })
-
-
             });
 
             $(".del").click(function () {
@@ -322,8 +344,54 @@
                     success: (function (response) {
                         console.log(response.nombre);
                     })
-                })
+                });
+                location.reload();
 
         });
+
+        $('.Agregar').click(function () {
+
+            $('.modal-create').modal('show');
+
+            $(".reg").click(function () {
+                var nombre = $('.nombren').val();
+                var apellido_p = $('.apellido_pn').val();
+                var apellido_m = $('.apellido_mn').val();
+                var nacimiento = $('.nacimienton').val();
+                var curp = $('.cn').val();
+                var rfc = $('.rn').val();
+                var token = $("input[name=_token]").val();
+                $.ajax({
+                    url: '/registrar',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        nombre: nombre,
+                        apellido_p: apellido_p,
+                        apellido_m: apellido_m,
+                        nacimiento: nacimiento,
+                        curp: curp,
+                        rfc: rfc,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response)
+                    }
+                });
+                location.reload();
+            })
+        });
+            $(document).ready(function(){
+                $("#buscador").keyup(function() {
+                    _this = this;
+                    $.each($("table tbody tr"), function() {
+                        if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                            $(this).hide();
+                        else
+                            $(this).show();
+                    });
+                });
+            });
+
     </script>
 @stop
