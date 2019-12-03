@@ -13,86 +13,112 @@
     <div id="logo">
         <img class="logo" src="img/logo.png">
     </div>
-    <div id="company">
-        <h2 class="name">Company Name</h2>
-        <div>455 Foggy Heights, AZ 85004, US</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
+    <div class="informacion">
+        <h2 class="name">Datos del cliente</h2>
+        <div><b>Nombre: </b> Daniel Rodriguez Lopez</div>
+        <div><b>No. Cuenta: </b> 1</div>
+        <div><b>Fecha de reporte:  </b> 22 diciembre 2019</div>
     </div>
 </header>
 <main>
     <div id="details" class="clearfix">
-        <div id="client">
-            <div class="to">INVOICE TO:</div>
-            <h2 class="name">John Doe</h2>
-            <div class="address">796 Silver Harbour, TX 79273, US</div>
-            <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
-        </div>
         <div id="invoice">
-            <h1>INVOICE 3-2-1</h1>
-            <div class="date">Date of Invoice: 01/06/2014</div>
-            <div class="date">Due Date: 30/06/2014</div>
+            <h1>Prestamos</h1>
         </div>
     </div>
-    <table border="0" cellspacing="0" cellpadding="0">
+    <table border="1" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="no">#</th>
-            <th class="desc">DESCRIPTION</th>
-            <th class="unit">UNIT PRICE</th>
-            <th class="qty">QUANTITY</th>
-            <th class="total">TOTAL</th>
+            <th class="Credito">Cantidad anos pagarlo</th>
+            <th class="Descripcion">Tipo de pago</th>
+            <th class="no">Tasa de interes</th>
+            <th class="no">Monto solicita</th>
+            <th class="no">Monto total pagar</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td class="no">01</td>
-            <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">30</td>
+            <td class="no">2</td>
+            <td class="desc">quincenal</td>
+            <td class="unit">%13</td>
+            <td class="qty">$30,000</td>
             <td class="total">$1,200.00</td>
         </tr>
         <tr>
-            <td class="no">02</td>
-            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
+            <td class="no">2</td>
+            <td class="desc">quincenal</td>
+            <td class="unit">%13</td>
+            <td class="qty">$30,000</td>
+            <td class="total">$1,200.00</td>
         </tr>
         <tr>
-            <td class="no">03</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
+            <td class="no">2</td>
+            <td class="desc">quincenal</td>
+            <td class="unit">%13</td>
+            <td class="qty">$30,000</td>
+            <td class="total">$1,200.00</td>
         </tr>
         </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2">SUBTOTAL</td>
-            <td>$5,200.00</td>
-        </tr>
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2">TAX 25%</td>
-            <td>$1,300.00</td>
-        </tr>
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2">GRAND TOTAL</td>
-            <td>$6,500.00</td>
-        </tr>
-        </tfoot>
     </table>
-    <div id="thanks">Thank you!</div>
-    <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+    <div class="clearfix">
+        <div id="invoice">
+            <h1>Pagos realizados</h1>
+        </div>
     </div>
+    <table border="1" cellspacing="0" cellpadding="0" class="table2">
+        <thead>
+        <tr>
+            <th class="Credito">No. pago</th>
+            <th class="Descripcion">Fecha de pago</th>
+            <th class="no">Cuota a pagar</th>
+            <th class="no">Interes</th>
+            <th class="no">Capital amortizado</th>
+            <th class="no">Capital final</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td class="desc">20 diciembre 2019</td>
+            <td class="unit">$600</td>
+            <td class="qty">%39</td>
+            <td class="total">$1,200.00</td>
+            <td class="total">$2,200.00</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td class="desc">21 diciembre 2019</td>
+            <td class="unit">$302</td>
+            <td class="qty">%21</td>
+            <td class="total">$1,200.00</td>
+            <td class="total">$2,670.00</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td class="desc">23 diciembre 2019</td>
+            <td class="unit">$921</td>
+            <td class="qty">%29</td>
+            <td class="total">$1,200.00</td>
+            <td class="total">$3,250.00</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="clearfix">
+        <div id="invoice">
+            <h1>Total de pagos</h1>
+        </div>
+    </div>
+    <table border="1" cellspacing="0" cellpadding="0" class="table2">
+        <thead>
+        <tr>
+            <th class="Credito">Total:</th>
+            <th class="no">$32,000,00 MXN</th>
+        </tr>
+        </thead>
+    </table>
 </main>
 <footer>
-    Invoice was created on a computer and is valid without the signature and seal.
+    Todos los pagos son seguros en nuestra plataforma.
 </footer>
 </body>
 </html>

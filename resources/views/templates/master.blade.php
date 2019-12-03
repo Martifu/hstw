@@ -19,10 +19,12 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="css/baseAdmin.scss" rel="stylesheet">
     <link href="fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="css/login.scss" rel="stylesheet" />
 
 </head>
 
 <body>
+@if (Session::has('usuario'))
 <div class="wrapper">
     <div class="sidebar" data-color="purple">
         <div class="sidebar-wrapper">
@@ -32,7 +34,7 @@
                 </a>
             </div>
             <ul class="nav">
-                <li class="" id="gestionClientes">
+                <li id="gestionClientes">
                     <a class="nav-link" href="/personas">
                         <img src="{{asset("img/ic_person_24px.png")}}">
                         <p>Gestionar clientes</p>
@@ -75,7 +77,7 @@
                     </a>
                 </li>
                 <li class="nav-item  active-pro">
-                    <a class="nav-link " href="upgrade.html">
+                    <a class="nav-link " href="cerrarsesion">
                         <img src="{{asset("img/ic_input_24px.png")}}">
                         <p style="color: #1b1e21">Salir</p>
                     </a>
@@ -88,7 +90,45 @@
        @yield('contenido', 'Default Content')
     </div>
 </div>
+@else
 
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-6 col-xl-6 d-none d-sm-none d-md-block margin-login">
+                <img class="figura" src="{{asset("img/Figura.png")}}">
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-6 margin-login">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img class="tamano-logo" src="{{asset("img/Logo.png")}}">
+                    </div>
+                    <div class="col-12">
+                        <div class="bs-example">
+                            <div class="form-group">
+                                <label class="float-label" for="exampleInputEmail1">Correo electronico</label>
+                                <input type="email" class="form-control" name="inputCorreo" id="inputCorreo" required>
+                                <span class="form-highlight"></span>
+                                <span class="form-bar"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="float-label" for="exampleInputEmail1">Password</label>
+                                <input type="password" class="form-control" name="inputPassword" id="inputPassword"
+                                       required>
+                                <span class="form-highlight"></span>
+                                <span class="form-bar"></span>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" id="btniniciarsesion" class="btn-color"> Iniciar sesion</button>
+                            </div>
+                            <div id="notificacion"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endif
 
 </body>
 
@@ -109,6 +149,7 @@
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<script src="js/login.js"></script>
 
 <script src="../assets/js/demo.js"></script>
 
