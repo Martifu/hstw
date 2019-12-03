@@ -46,11 +46,17 @@
                                 <button id="btn-numcliente" class="btn-desing m-3" type="button">Numero de cliente</button>
                             </div>
                         </div>
+                        @csrf
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 align-self-center" id="cardbuscador">
+            <div class="col-md-6 col-sm-12 align-self-center">
+                <form method="post" action="generarReporte">
+                    @csrf
+                    <div id="cardbuscador">
 
+                    </div>
+                </form>
             </div>
         </div>
     </div>

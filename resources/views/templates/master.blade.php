@@ -32,8 +32,8 @@
                 </a>
             </div>
             <ul class="nav">
-                <li class="nav-item active" id="gestionClientes">
-                    <a class="nav-link" href="dashboard.html">
+                <li class="" id="gestionClientes">
+                    <a class="nav-link" href="/personas">
                         <img src="{{asset("img/ic_person_24px.png")}}">
                         <p>Gestionar clientes</p>
                     </a>

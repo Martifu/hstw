@@ -6,24 +6,13 @@ use Illuminate\Http\Request;
 
 class reportespdfController extends Controller
 {
-    public function invoice()
+    public function reporte(Request $request)
     {
-        $datos = $this->getData();
         $fecha = date('Y-m-d');
         $invoice = "2222";
-        $view =  \View::make('pdf.reporte', compact('datos', 'fecha', 'invoice'))->render();
+        $view =  \View::make('pdf.reporte', compact( 'fecha', 'invoice'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('invoice');
-    }
-    public function getData()
-    {
-        $data =  [
-            'quantity'      => '1' ,
-            'description'   => 'some ramdom text',
-            'price'   => '500',
-            'total'     => '500'
-        ];
-        return $data;
+        return $pdf->stream('reporte.pdf', array('Content-Type' =>'application/pdf', 'Content-Transfer-Encoding' => 'Binary', 'Content-disposition' => 'attachment'));
     }
 }
