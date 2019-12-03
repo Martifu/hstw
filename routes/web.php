@@ -53,12 +53,10 @@ Route::get('/reportes', function ()
 
 #BURO CREDITO
 
-Route::get('burocredito', function(){
+Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
+Route::post('/reporte_buro','BuroCreditoController@reporteburo');
 
-    return view('Burocredito');
-});
 
-Route::get('datosburo', "BuroCreditoController@PersonasBuro");
 
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()

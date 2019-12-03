@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li id="buroCredito">
-                    <a class="nav-link" href="./table.html">
+                    <a class="nav-link" href="/Burocredito">
                         <img src="{{asset("img/ic_import_contacts_24px.png")}}">
                         <p>Buro de credito</p>
                     </a>
@@ -98,6 +98,8 @@
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/wbn-datepicker.min.js"></script>
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
 <!--  Chartist Plugin  -->
 <script src="../assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
