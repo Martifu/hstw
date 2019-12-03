@@ -22,7 +22,7 @@ class PersonaController extends Controller
 
         return response()->json([
             'success' => true,
-            'credito' => 'no',
+            'credito' => 'si',
             'persona' => $persona
         ]);
 
