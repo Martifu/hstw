@@ -19,7 +19,7 @@ $(document).ready(function () {
                     }
                     else if (response.status == 200)
                     {
-                        location.href="/reportes"
+                        location.href="/"
                     }
 
                 }

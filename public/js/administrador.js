@@ -20,4 +20,19 @@ $(document).ready(function () {
         $("#gestionClientes").removeClass("active");
         $("#reportes").removeClass("active");
     }
+    else if(textoNav == " Buro de credito ")
+    {
+        $("#buroCredito").addClass("active");
+        $("#cobranza").removeClass("active");
+        $("#asignarTarjetas").removeClass("active");
+        $("#gestionClientes").removeClass("active");
+        $("#reportes").removeClass("active");
+    }
+    else if(textoNav == " Clientes ")
+    {
+        $("#gestionClientes").addClass("active");
+        $("#cobranza").removeClass("active");
+        $("#asignarTarjetas").removeClass("active");
+        $("#reportes").removeClass("active");
+    }
 });
