@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
+                        <a class="nav-link" href="cerrarsesion">
                             <span class="no-icon">Salir</span>
                         </a>
                     </li>
@@ -25,9 +25,10 @@
             <h3>Personas con deudas</h3>
         </div>
         <div class="card-body text-dark">
-            <table class="table table-hover">
+            <table class="table table-hover" id="tabla_personas">
                 <thead>
                 <tr>
+                    <th scope="col"></th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido paterno</th>
                     <th scope="col">Apellido materno</th>
@@ -39,6 +40,7 @@
                 <tbody>
                 @foreach($personas as $persona)
                 <tr>
+                    <td><input id="id_tabla_cliente" class="id" type="hidden" value="{{$persona['id']}}"></td>
                     <th>{{$persona['nombre']}}</th>
                     <td>{{$persona['apellido_p']}}</td>
                     <td>{{$persona['apellido_m']}}</td>
@@ -52,6 +54,7 @@
                 </tr>
                     @endforeach
                 </tbody>
+                @csrf
             </table>
         </div>
     </div>
@@ -61,70 +64,23 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Deudas:</h5>
+                    <h3 class="modal-title" id="exampleModalLongTitle">Deudas:</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-hover table-dark">
+                    <table class="table table-hover" id="tabla_deudas_cliente">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Pago $</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Fecha de pago</th>
+                            <th scope="col">Limite de fecha de pago</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+                        <tbody id="datos_tabla">
+
                         </tbody>
                     </table>
                 </div>

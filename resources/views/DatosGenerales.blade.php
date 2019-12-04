@@ -3,7 +3,7 @@
 @section('contenido')
 
     <nav class="navbar col-md-12 col-sm-12 movilhidden">
-        <a class="navbar-brand ">Clientes</a>
+        <a class="navbar-brand"> Clientes </a>
         <div class="d-inline-flex">
                 <button class="btn btn-info  my-sm-0 my-0 buttonbase Agregar" >Agregar</button>
             <input class="form-control mr-sm-2" id="buscador" type="search" placeholder="Buscar" aria-label="Search">

@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
+                        <a class="nav-link" href="cerrarsesion">
                             <span class="no-icon">Salir</span>
                         </a>
                     </li>
@@ -48,9 +48,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-12 align-self-center" id="cardbuscador">
 
+            </div>
+            <div class="col-md-6 col-sm-12 align-self-center">
+                <form method="post" action="generarReporte">
+                    @csrf
+                    <div id="cardbuscador" class="card">
+                        @if (session('notificacion'))
+                            <div class="alert alert-danger pull-right">
+                                {{ session('notificacion') }}
+                            </div>
+                        @endif
+                    </div>
+                </form>
             </div>
         </div>
     </div>

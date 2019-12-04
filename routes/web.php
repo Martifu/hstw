@@ -11,6 +11,7 @@
 |
 
 */
+
 Route::post('/registrar','PersonaController@nuevapersona');
 
 Route::get('/tarjetas',function (){
@@ -33,18 +34,20 @@ Route::get('/tarjetas',function (){
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
 Route::get('/', function ()
 {
-    return view('login');
+    return view('inicio');
 });
-
 Route::post('checarburo', 'PersonaController@checarburo');
 Route::get('checarburos', 'PersonaController@checarburos');
 
 Route::get('/login', function ()
 {
-   return view('login');
+   return view('inicio');
 });
 
-Route::get('/cobranza', "AdministradorController@deudas");
+Route::get('cerrarsesion','AdministradorController@cerrarSesion');
+
+Route::get('/cobranza', "cobranzaController@personas_deuda");
+Route::post('getdeudascliente', "cobranzaController@getdeudas");
 
 Route::get('pdf','reportespdfController@invoice');
 
@@ -55,15 +58,15 @@ Route::get('/reportes', function ()
    return view('generarReportes');
 });
 
+Route::post('generarReporte', "reportespdfController@reporte");
 
 #BURO CREDITO
 
-Route::get('burocredito', function(){
+Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
+Route::post('/reporte_buro','BuroCreditoController@reporteburo');
 
-    return view('Burocredito');
-});
 
-Route::get('datosburo', "BuroCreditoController@PersonasBuro");
+
 
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()
