@@ -40,6 +40,7 @@
                             <th>Apellidos</th>
                             <th class="movilhidden">Fecha de Nacimiento</th>
                             <th class="movilhidden">CURP</th>
+
                         </tr>
                         </thead>
                         <tbody style="color: black;" class="tabla prueba">
@@ -214,10 +215,11 @@
                                 '                                <td value="" class="tapellidos">'+elemento.apellido_p+' '+elemento.apellido_m+'</td>\n' +
                                 '                                <td value=""  class="movilhidden tnacimiento">'+elemento.fecha_nacimiento+'</td>\n' +
                                 '                                <td value="" class="movilhidden tcurp">'+elemento.curp+'</td>\n' +
-                                '                                <td><button class="btn btn-danger btn-delete btn-sm" value='+elemento.id+'><i class="fas fa-trash-alt"></i></button></td>\n' +
-                                '                                <td><button class="btn btn-inf btn-warning btn-sm" value='+elemento.id+'><i class="fas fa-eye"></i></button></td>\n' +
-                                '                                <td><button class="btn btn-primary btn-act btn-sm"  value='+elemento.id+'><i class="fas fa-user-edit"></i></button></td>\n' +
-                                '                                <td ></td></tr>')
+                                '                                <td><button class="btn btn-danger btn-delete text-danger" style="height: 40px;" value='+elemento.id+'><i class="fas fa-trash-alt"></i></button></td>\n' +
+                                '                                <td><button class="btn btn-inf btn-warning" style="height: 40px;" value='+elemento.id+'><i class="fas fa-eye"></i></button></td>\n' +
+                                '                                <td><button class="btn btn-primary btn-act" style="height: 40px;"  value='+elemento.id+'><i class="fas fa-user-edit"></i></button></td>\n' +
+                                '                                <td></td>\n' +
+                                '                                </tr>')
                         })
                     }
                 })
