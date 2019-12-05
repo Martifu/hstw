@@ -75,6 +75,23 @@ class PersonaController extends Controller
 
     public function checarburos(Request $request)
     {
+        /*$productos = Session::get('productos');
+        $todos = Collection::make($productos);
+       $t = $todos->groupBy('id')->toArray();
+        $rv=[];
+        foreach ($t as $k => $c)
+        {
+            $rv[]=['producto'=>$c[0],
+            'cantidad'=> count($c)
+            ];
+        }
+//        dd($t);
+        return view('user.carrito',compact('rv'));*/
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        dd($persona);}
+        $rv=0;
+        foreach ($persona as $key => $a) {
+            $rv=$a['adeudo']+$rv;
+        }
+        dd($rv);
+    }
 }
