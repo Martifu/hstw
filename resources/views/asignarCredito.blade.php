@@ -148,9 +148,10 @@
                    tabla.html('');
                    $.each(response, function (i,v) {
                        tabla.append( '<tr><td>'+v.nombre+'</td><td >'+v.rfc+'</td><td>'+v['instituciones']['0'].nombre+'</td>  </tr>')
-                   })
+                   });
                }
-           })
+           });
+
            $.ajax({
                     type: "POST",
                     dataType: 'json',
@@ -167,49 +168,6 @@
                     url: '/verificar-buro',
                     success: function(response){
                         console.log(response['credito']);
-                        if (response['credito']=='no'){
-                            $.notify({
-                                // options
-                                message: 'El cliente no tiene permiso para una tarjeta de credito'
-                            },{
-                                // settings
-                                type: 'danger'
-                            });
-                            $('.card-cliente').remove();
-                            $('.main').append('                <div class="col-md-4 card-cliente">\n' +
-                                '                    <div class="card card-user">\n' +
-                                '                        <div class="card-image">\n' +
-                                '                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">\n' +
-                                '                        </div>\n' +
-                                '                        <div class="card-body">\n' +
-                                '                            <div class="author">\n' +
-                                '                                <p href="#">\n' +
-                                '                                    <img class="avatar border-info"  src="{{asset('assets/img/user-default.png')}}" alt="...">\n' +'' +
-                                '                                    <input id="personaid" name="" type="hidden" value="'+response['persona'][0]["id"]+'">'+
-                                '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
-                                '                                </p>\n' +
-                                '                                <p class="description">\n' +
-                                '                                    Estatus:\n' +
-                                '                                </p>\n' +
-                                '                            </div>\n' +
-                                '                            <p class="description text-center">\n' +
-                                '                                "Lamborghini Mercy\n' +
-                                '                                <br> Your chick she so thirsty\n' +
-                                '                                <br> I\'m in that two seat Lambo"\n' +
-                                '                            </p>\n' +
-                                '                        </div>\n' +
-                                '                        <hr>\n' +
-                                '                        <div class="button-container mr-auto ml-auto pb-2">\n' +
-                                '                            <button value="débito"  class="btn  " id="asignarDebito">\n' +
-                                '                               Débito\n' +
-                                '                            </button>\n' +
-                                '                        </div>\n' +
-                                '                    </div>\n' +
-                                '                </div>\n' +
-                                '            </div>\n' +
-                                '        </div>\n' +
-                                '    </div>')
-                        } else  {
                             $.notify({
                                 // options
                                 message: 'El cliente no tiene problemas con buró de crédito'
@@ -231,7 +189,7 @@
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
                                 '                                <p class="description">\n' +
-                                '                                    Estatus:\n' +
+                                '                                    Estatus:abajo'+response['color']+'\n' +
                                 '                                </p>\n' +
                                 '                            </div>\n' +
                                 '                            <p class="description text-center">\n' +
@@ -242,26 +200,27 @@
                                 '                        </div>\n' +
                                 '                        <hr>\n' +
                                 '                        <div class="button-container mr-auto ml-auto pb-2">\n' +
-                                '                            <button value="" class="btn " id="asignarCredito">\n' +
-                                '                               Crédito\n' +
-                                '                            </button>\n' +
+                                                         
 
-                                '                            <button value="debito" class="btn  " id="asignarDebito">\n' +
+                                '                            <a href="'+response['href']+'" style="background:'+response['color']+'; color:white;" value="debito" class="btn  " id="asignarDebito">\n' +
                                 '                               Débito\n' +
-                                '                            </button>\n' +
+                                '                            </a>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
                                 '                </div>\n' +
                                 '            </div>\n' +
                                 '        </div>\n' +
-                                '    </div>')
-
-                                $('#asignarDebito').css();
-
-                        }
+                                '    </div>');
+                                
+                        
 
                     }
                 });
+
+        });
+        $('#asignarDebito').click(function(e){
+            $('.buroC').html('');
+            
         });
         });
     </script>

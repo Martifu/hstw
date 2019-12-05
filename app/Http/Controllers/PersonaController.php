@@ -16,13 +16,33 @@ class PersonaController extends Controller
         return $personas;
     }
     public function verificaBuro(Request $request){
+        $persona2 = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
         $persona = Persona::where('curp','=',$request->curp)->get();
-
+        $rv=0;
+        $hr='#';
+        foreach ($persona2 as $key => $a) {
+            $rv=$a['adeudo']+$rv;
+        }
+        $credito="red";
+        $rv=1000;
+        if($rv<=1000)
+        {
+            $credito="green";
+            $hr='asignarcredito';
+        }
+        else {
+            if ($rv<=3000)
+            $credito ="yellow";
+            $hr='asignarcredito';
+        }
+        
 
         return response()->json([
             'success' => true,
             'credito' => 'no',
-            'persona' => $persona
+            'persona' => $persona,
+            'color'=>$credito,
+            'href'=>$hr
         ]);
 
     }
@@ -75,23 +95,29 @@ class PersonaController extends Controller
 
     public function checarburos(Request $request)
     {
-        /*$productos = Session::get('productos');
-        $todos = Collection::make($productos);
-       $t = $todos->groupBy('id')->toArray();
-        $rv=[];
-        foreach ($t as $k => $c)
-        {
-            $rv[]=['producto'=>$c[0],
-            'cantidad'=> count($c)
-            ];
-        }
-//        dd($t);
-        return view('user.carrito',compact('rv'));*/
+       
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
         $rv=0;
         foreach ($persona as $key => $a) {
             $rv=$a['adeudo']+$rv;
         }
-        dd($rv);
+        $credito="red";
+        $rv=1000;
+        if($rv<=1000)
+        {
+            $credito="green";
+        }
+        else {
+            if ($rv<=3000)
+            $credito ="yellow";
+        }
+        dd($credito);
     }
+    public function credito(){
+        return view('asignarCredito');
+    }
+    public function asignarcredito(){
+        return dd(MBuroCredito::all());
+    }
+    
 }
