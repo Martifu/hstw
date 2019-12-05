@@ -34,3 +34,8 @@
 @media (min-width: 1200px) {
   .pchidden {
     display: none; } }
+
+.btn-inf,.btn-delete,.btn-act{
+    height: 10px;
+}
+

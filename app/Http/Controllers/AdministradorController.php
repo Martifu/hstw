@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Persona;
 use Illuminate\Http\Request;
 use App\Administrador;
+use Illuminate\Support\Facades\Session;
 
 class AdministradorController extends Controller
 {
@@ -16,6 +17,7 @@ class AdministradorController extends Controller
         $valor = $administrador == null ? 0 : 1;
         if ($valor)
         {
+            Session::put('usuario', $correo);
             $respuesta = ["mensaje" => "Bienvenido", "status"=>"200"];
             return $respuesta;
         }
@@ -25,9 +27,10 @@ class AdministradorController extends Controller
         }
     }
 
-    function deudas()
+    function cerrarSesion()
     {
-        $personas = Persona::all();
-        return view('cobranza', compact("personas"));
+        Session::flush();
+        return view('DatosGenerales');
     }
+
 }
