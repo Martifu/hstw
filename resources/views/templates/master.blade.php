@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li id="AsignarPrestamos">
-                    <a class="nav-link" href="./icons.html">
+                    <a class="nav-link" href="/credito">
                         <img src="{{asset("img/ic_work_24px.png")}}">
                         <p>Asignar prestamos</p>
                     </a>

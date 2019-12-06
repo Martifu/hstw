@@ -24,23 +24,26 @@ class PersonaController extends Controller
         foreach ($persona2 as $key => $a) {
             $rv=$a['adeudo']+$rv;
         }
+        $x="no";
         $credito="red";
         $rv=1000;
         if($rv<=1000)
         {
             $credito="green";
             $hr='asignarcredito';
+            $x="si";
         }
         else {
             if ($rv<=3000)
             $credito ="yellow";
             $hr='asignarcredito';
+            $x="si";
         }
         
 
         return response()->json([
             'success' => true,
-            'credito' => 'no',
+            'credito' => $x,
             'persona' => $persona,
             'color'=>$credito,
             'href'=>$hr
@@ -154,7 +157,7 @@ class PersonaController extends Controller
         return view('asignarCredito');
     }
     public function asignarcredito(){
-        return dd(MBuroCredito::all());
+        return view('asignarPrestamo');
     }
     
 }
