@@ -18,7 +18,7 @@
                         </a>
                     </li>
                 </ul>
-            </div> 
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -129,7 +129,6 @@
                         },
                     url: '/verificar-buro',
                     success: function(response){
-                        console.log(response['credito']);
                         if (response['credito']=='no'){
                             $.notify({
                                 // options
@@ -222,7 +221,6 @@
 
                     }
                 });
-                console.log(curp +rfc+nombre+apellidoM+apellidoP+date+token);
             });
             $('body').on('click','#asignarDebito',function (event) {
                 event.preventDefault();
@@ -295,7 +293,7 @@
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
-                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardar" style="color: white">Guardar</a>\n' +
+                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardarD" style="color: white">Guardar</a>\n' +
                     '                                <div class="clearfix"></div>\n' +
                     '                            </form>\n' +
                     '                        </div>\n' +
@@ -374,7 +372,7 @@
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
-                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardar" style="color: white">Guardar</a>\n' +
+                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardarC" style="color: white">Guardar</a>\n' +
                     '                                <div class="clearfix"></div>\n' +
                     '                            </form>\n' +
                     '                        </div>\n' +
@@ -397,7 +395,7 @@
             });
 
 
-            $('body').on('click','#guardar',function (event) {
+            $('body').on('click','#guardarC',function (event) {
                 event.preventDefault();
                 var idguardar = $('#idasignar').val();
                 var tarjeta = $('#notarjeta').val();
@@ -405,6 +403,23 @@
                 var anio = $('#anio').val();
                 var tipo = $('#tipo').val();
                 console.log(idguardar, tarjeta, mes,anio, tipo);
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data:
+                        {
+                            idguardar: idguardar,
+                            tarjeta:  tarjeta,
+                            mes: mes,
+                            anio: anio,
+                            tipo: tipo,
+                            _token: token
+                        },
+                    url: '/tcredito',
+                    success : function(response){
+                        console.log(response);
+                    }
+                });
             });
 
 

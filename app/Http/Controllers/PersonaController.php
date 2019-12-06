@@ -9,7 +9,15 @@ use App\MBuroCredito;
 
 class PersonaController extends Controller
 {
+    public function tarjetas(){
+        return view('asignarTarjetas');
+    }
+    public function asignartDebito(){
 
+    }
+    public function asignartCredito(){
+
+    }
     public function personas()
     {
 
@@ -17,13 +25,33 @@ class PersonaController extends Controller
         return $personas;
     }
     public function verificaBuro(Request $request){
+        $persona2 = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
         $persona = Persona::where('curp','=',$request->curp)->get();
+        $rv=0;
+        $hr='#';
+        foreach ($persona2 as $key => $a) {
+            $rv=$a['adeudo']+$rv;
+        }
+        $credito="red";
+        $rv=1000;
+        if($rv<=1000)
+        {
+            $credito="green";
+            $hr='asignarcredito';
+        }
+        else {
+            if ($rv<=3000)
+            $credito ="yellow";
+            $hr='asignarcredito';
+        }
 
 
         return response()->json([
             'success' => true,
             'credito' => 'si',
-            'persona' => $persona
+            'persona' => $persona,
+            'color'=>$credito,
+            'href'=>$hr
         ]);
 
     }
@@ -112,6 +140,31 @@ class PersonaController extends Controller
 
     public function checarburos(Request $request)
     {
+
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        dd($persona);}
+        $rv=0;
+        foreach ($persona as $key => $a) {
+            $rv=$a['adeudo']+$rv;
+        }
+        $credito="red";
+        $rv=1000;
+        if($rv<=1000)
+        {
+            $credito="green";
+        }
+        else {
+            if ($rv<=3000)
+            $credito ="yellow";
+        }
+        dd($credito);
+    }
+    public function credito(){
+        return view('asignarCredito');
+    }
+    public function asignarcredito(){
+        return dd(MBuroCredito::all());
+    }
+
+
+
 }
