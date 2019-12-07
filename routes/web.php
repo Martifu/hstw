@@ -17,9 +17,6 @@ Route::post('/registrar','PersonaController@nuevapersona');
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
-Route::get('/credito',function (){
-    return view('asignarCredito');
-});
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
 
 Route::get('/personas','PersonaController@traerpersonas');
@@ -75,4 +72,10 @@ Route::get('/basedani', function ()
 {
    return view('baseAdministradorcopia');
 });
+
+
+
+
+Route::get('/credito','PersonaController@credito');
+Route::get('/asignarcredito','PersonaController@asignarcredito');
 
