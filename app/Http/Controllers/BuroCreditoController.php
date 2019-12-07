@@ -4,34 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Persona;
-use App\Mburodirecciones;
+use App\MburoCredito;
+use App\direcciones;
 
 class BuroCreditoController extends Controller
 {
     function PersonasBuro()
     {
-        $personas = Persona::all();
-        $direcciones = Mburodirecciones::all();
-        return view('Burocredito', compact("personas","direcciones"));
+    
+        $personas = MburoCredito::all();
+        return view('Burocredito', compact("personas"));
     }
 
-    function reporteburo(Request $request)
+
+
+    public function reporte(Request $request)
     {
+       
+        $fecha = date('Y-m-d');
+        $invoice = "2222";
+        $view = \View::make('reporteburo.reporte', compact('fecha', 'invoice'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);   
+       return $pdf->stream();
+       return redirect('/burocredito');
+      
     
-        $ids = $request->ids;
-        $personas = [];
-        for ($i=0; $i<sizeof($ids) - 1; $i++) {
-            $personas = Persona::all()->where('id', $ids[$i])->get();
-            $personas[$i] = $personas[0];
-        }
-        $pdf = PDF::loadView('reporteburo.reporte', $data);
-        return base64_encode($pdf->stream('invoice.pdf'));
-    }
-    
-    
-  
 
+    }
 
 
 }

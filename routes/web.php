@@ -63,7 +63,9 @@ Route::post('generarReporte', "reportespdfController@reporte");
 #BURO CREDITO
 
 Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
-Route::post('/reporte_buro','BuroCreditoController@reporteburo');
+Route::post('reporte_buros','BuroCreditoController@reporte');
+Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
+
 
 
 
