@@ -5,11 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
-
+use App\TarjetasPersona;
 
 class PersonaController extends Controller
 {
+    public function tarjetas(){
+        return view('asignarTarjetas');
+    }
+    public function asignartDebito(){
 
+    }
+    public function asignartCredito(Request $request){
+        $tarjeta = new TarjetasPersona();
+        $tarjeta->numero = $request->numero;
+        $tarjeta->fecha = $request->fecha;
+        $tarjeta->tipo = $request->tipo;
+        $tarjeta->id_personas = $request->id;
+        $tarjeta->save();
+
+
+        $persona = Persona::where('id','=',$request->id)->with('tarjeta')->get();
+        return $persona;
+    }
     public function personas()
     {
 
@@ -17,11 +34,21 @@ class PersonaController extends Controller
         return $personas;
     }
     public function verificaBuro(Request $request){
-        $persona2 = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        $persona = Persona::where('curp','=',$request->curp)->get();
+        $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
+            ->orWhere('curp','=',$request->curp)
+            ->orWhere(function($q) use ($request){
+                $q->where('fecha_nacimiento','=', $request->date);
+                $q->where('nombre','=', $request->nombre);
+            })->get();
+        $persona = Persona::where('rfc', '=', $request->rfc)
+            ->orWhere('curp','=',$request->curp)
+            ->orWhere(function($q) use ($request){
+                $q->where('fecha_nacimiento','=', $request->date);
+                $q->where('nombre','=', $request->nombre);
+            })->get();
         $rv=0;
         $hr='#';
-        foreach ($persona2 as $key => $a) {
+        foreach ($personaBuro as $key => $a) {
             $rv=$a['adeudo']+$rv;
         }
         $x="no";
@@ -39,11 +66,12 @@ class PersonaController extends Controller
             $hr='asignarcredito';
             $x="si";
         }
-        
+
 
         return response()->json([
             'success' => true,
-            'credito' => $x,
+            'credito' => 'no',
+            'personaBuro' => $personaBuro,
             'persona' => $persona,
             'color'=>$credito,
             'href'=>$hr
@@ -135,7 +163,7 @@ class PersonaController extends Controller
 
     public function checarburos(Request $request)
     {
-       
+
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
         $rv=0;
         foreach ($persona as $key => $a) {
@@ -159,5 +187,7 @@ class PersonaController extends Controller
     public function asignarcredito(){
         return view('asignarPrestamo');
     }
-    
+
+
+
 }

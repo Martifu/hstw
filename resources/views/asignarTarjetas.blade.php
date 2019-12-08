@@ -18,7 +18,7 @@
                         </a>
                     </li>
                 </ul>
-            </div> 
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -129,7 +129,6 @@
                         },
                     url: '/verificar-buro',
                     success: function(response){
-                        console.log(response['credito']);
                         if (response['credito']=='no'){
                             $.notify({
                                 // options
@@ -222,7 +221,6 @@
 
                     }
                 });
-                console.log(curp +rfc+nombre+apellidoM+apellidoP+date+token);
             });
             $('body').on('click','#asignarDebito',function (event) {
                 event.preventDefault();
@@ -271,12 +269,12 @@
                     '                                        <div class="form-group">\n' +
                     '                                            <label for="">Año</label>\n' +
                     '                                            <select id="anio" class="form-control w-100 h-100">\n' +
-                    '                                                <option value="16"> 2016</option>\n' +
-                    '                                                <option value="17"> 2017</option>\n' +
-                    '                                                <option value="18"> 2018</option>\n' +
-                    '                                                <option value="19"> 2019</option>\n' +
-                    '                                                <option value="20"> 2020</option>\n' +
-                    '                                                <option value="21"> 2021</option>\n' +
+                    '                                                <option value="2020"> 2020</option>\n' +
+                    '                                                <option value="2021"> 2021</option>\n' +
+                    '                                                <option value="2022"> 2022</option>\n' +
+                    '                                                <option value="2023"> 2023</option>\n' +
+                    '                                                <option value="2024"> 2024</option>\n' +
+                    '                                                <option value="2025"> 2025</option>\n' +
                     '                                            </select>\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
@@ -288,14 +286,14 @@
                     '                                        <div class="form-group">\n' +
                     '                                            <label>Tipo de tarjeta</label>\n' +
                     '                                            <select id="tipo" class="form-control w-100 h-100">\n' +
-                    '                                                <option value="16"> Mastercard</option>\n' +
-                    '                                                <option value="17"> Banamex</option>\n' +
-                    '                                                <option value="18"> Banorte</option>\n' +
+                    '                                                <option value="Mastercard">Mastercard</option>\n' +
+                    '                                                <option value="Banamex"> Banamex</option>\n' +
+                    '                                                <option value="Banorte"> Banorte</option>\n' +
                     '                                            </select>\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
-                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardar" style="color: white">Guardar</a>\n' +
+                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardarD" style="color: white">Guardar</a>\n' +
                     '                                <div class="clearfix"></div>\n' +
                     '                            </form>\n' +
                     '                        </div>\n' +
@@ -350,12 +348,12 @@
                     '                                        <div class="form-group">\n' +
                     '                                            <label for="">Año</label>\n' +
                     '                                            <select id="anio" class="form-control w-100 h-100">\n' +
-                    '                                                <option value="16"> 2016</option>\n' +
-                    '                                                <option value="17"> 2017</option>\n' +
-                    '                                                <option value="18"> 2018</option>\n' +
-                    '                                                <option value="19"> 2019</option>\n' +
-                    '                                                <option value="20"> 2020</option>\n' +
-                    '                                                <option value="21"> 2021</option>\n' +
+                    '                                                <option value="2020"> 2020</option>\n' +
+                    '                                                <option value="2021"> 2021</option>\n' +
+                    '                                                <option value="2022"> 2022</option>\n' +
+                    '                                                <option value="2023"> 2023</option>\n' +
+                    '                                                <option value="2024"> 2024</option>\n' +
+                    '                                                <option value="2025"> 2025</option>\n' +
                     '                                            </select>\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
@@ -367,14 +365,14 @@
                     '                                        <div class="form-group">\n' +
                     '                                            <label>Tipo de tarjeta</label>\n' +
                     '                                            <select id="tipo" class="form-control w-100 h-100">\n' +
-                    '                                                <option value="16"> Mastercard</option>\n' +
-                    '                                                <option value="17"> Banamex</option>\n' +
-                    '                                                <option value="18"> Banorte</option>\n' +
+                    '                                                <option value="Mastercard"> Mastercard</option>\n' +
+                    '                                                <option value="Banamex"> Banamex</option>\n' +
+                    '                                                <option value="Banorte"> Banorte</option>\n' +
                     '                                            </select>\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
-                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardar" style="color: white">Guardar</a>\n' +
+                    '                                <a  class="btn btn-info btn-fill pull-right" id="guardarC" style="color: white">Guardar</a>\n' +
                     '                                <div class="clearfix"></div>\n' +
                     '                            </form>\n' +
                     '                        </div>\n' +
@@ -397,16 +395,66 @@
             });
 
 
-            $('body').on('click','#guardar',function (event) {
+            $('body').on('click','#guardarC',function (event) {
                 event.preventDefault();
-                var idguardar = $('#idasignar').val();
-                var tarjeta = $('#notarjeta').val();
+                var token = $("input[name='_token']").val();
+                var id = $('#idasignar').val();
+                var numero = $('#notarjeta').val();
                 var mes = $('#mes').val();
                 var anio = $('#anio').val();
                 var tipo = $('#tipo').val();
-                console.log(idguardar, tarjeta, mes,anio, tipo);
+                var  fecha = anio+'-'+mes+'-'+'01';
+                var  load = $('#guardarC');
+                load.html('Guardando...');
+                console.log(id, numero, fecha, tipo);
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data:
+                        {
+                            id: id,
+                            numero:  numero,
+                            fecha: fecha,
+                            tipo: tipo,
+                            _token: token
+                        },
+                    url: '/tcredito',
+                    success : function(response){
+                        location.href = '/tarjetas';
+                    }
+                });
+
             });
 
+            $('body').on('click','#guardarD',function (event) {
+                event.preventDefault();
+                var token = $("input[name='_token']").val();
+                var id = $('#idasignar').val();
+                var numero = $('#notarjeta').val();
+                var mes = $('#mes').val();
+                var anio = $('#anio').val();
+                var tipo = $('#tipo').val();
+                var fecha = anio + '-' + mes + '-' + '01';
+                var load = $('#guardarD');
+                load.html('Guardando...');
+                console.log(id, numero, fecha, tipo);
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data:
+                        {
+                            id: id,
+                            numero: numero,
+                            fecha: fecha,
+                            tipo: tipo,
+                            _token: token
+                        },
+                    url: '/tcredito',
+                    success: function (response) {
+                        location.href = '/tarjetas';
+                    }
+                });
+            });
 
         });
     </script>
