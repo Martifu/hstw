@@ -18,6 +18,7 @@ Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
+Route::post('/tcredito','PersonaController@asignartCredito');
 
 Route::get('/personas','PersonaController@traerpersonas');
 Route::get('/traerpersonas','PersonaController@personas');
@@ -25,9 +26,8 @@ Route::POST('/actualizarpersona','PersonaController@traerpersona');
 Route::POST('/actualizar','PersonaController@actualizarinfo');
 Route::post('/borrarpersona','PersonaController@borrarper');
 
-Route::get('/tarjetas',function (){
-    return view('asignarTarjetas');
-});
+Route::get('/tarjetas','PersonaController@tarjetas');
+
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
 Route::get('/', function ()
 {
@@ -60,7 +60,11 @@ Route::post('generarReporte', "reportespdfController@reporte");
 #BURO CREDITO
 
 Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
-Route::post('/reporte_buro','BuroCreditoController@reporteburo');
+Route::post('reporte_buros','BuroCreditoController@reporte');
+Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
+
+
+
 
 
 
