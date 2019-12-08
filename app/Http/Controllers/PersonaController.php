@@ -16,15 +16,16 @@ class PersonaController extends Controller
 
     }
     public function asignartCredito(Request $request){
-        $persona = Persona::where('id','=',$request->idguardar)->get();
-        $tarjeta = new TarjetasPersona([
-            'numero' => $request->numero,
-            'fecha' => $request->fecha,
-            'tipo' => $request->tipo
-            ]);
-//        $persona->tarjeta()->save($tarjeta);
-//        $personaG = Persona::where('id','=',$request->idguardar)->with('tarjeta')->get();
-        return $tarjeta;
+        $tarjeta = new TarjetasPersona();
+        $tarjeta->numero = $request->numero;
+        $tarjeta->fecha = $request->fecha;
+        $tarjeta->tipo = $request->tipo;
+        $tarjeta->id_personas = $request->id;
+        $tarjeta->save();
+
+
+        $persona = Persona::where('id','=',$request->id)->with('tarjeta')->get();
+        return $persona;
     }
     public function personas()
     {
@@ -33,11 +34,21 @@ class PersonaController extends Controller
         return $personas;
     }
     public function verificaBuro(Request $request){
-        $persona2 = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        $persona = Persona::where('curp','=',$request->curp)->get();
+        $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
+            ->orWhere('curp','=',$request->curp)
+            ->orWhere(function($q) use ($request){
+                $q->where('fecha_nacimiento','=', $request->date);
+                $q->where('nombre','=', $request->nombre);
+            })->get();
+        $persona = Persona::where('rfc', '=', $request->rfc)
+            ->orWhere('curp','=',$request->curp)
+            ->orWhere(function($q) use ($request){
+                $q->where('fecha_nacimiento','=', $request->date);
+                $q->where('nombre','=', $request->nombre);
+            })->get();
         $rv=0;
         $hr='#';
-        foreach ($persona2 as $key => $a) {
+        foreach ($personaBuro as $key => $a) {
             $rv=$a['adeudo']+$rv;
         }
         $x="no";
@@ -59,7 +70,8 @@ class PersonaController extends Controller
 
         return response()->json([
             'success' => true,
-            'credito' => $x,
+            'credito' => 'no',
+            'personaBuro' => $personaBuro,
             'persona' => $persona,
             'color'=>$credito,
             'href'=>$hr
