@@ -30,13 +30,13 @@ class PersonaController extends Controller
         if($rv<=1000)
         {
             $credito="green";
-            $hr='asignarcredito';
+            $hr='asignarcredito/'.$persona['0']['id'];
             $x="si";
         }
         else {
             if ($rv<=3000)
             $credito ="yellow";
-            $hr='asignarcredito';
+            $hr='asignarcredito/'.$persona['0']['id'];
             $x="si";
         }
         
@@ -137,6 +137,7 @@ class PersonaController extends Controller
     {
        
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
+        $persona2 = Persona::where('curp','=','2')->get();
         $rv=0;
         foreach ($persona as $key => $a) {
             $rv=$a['adeudo']+$rv;
@@ -151,13 +152,15 @@ class PersonaController extends Controller
             if ($rv<=3000)
             $credito ="yellow";
         }
-        dd($credito);
+       // $ee=$persona2['id'];
+        dd($persona2['0']['id']);
     }
     public function credito(){
         return view('asignarCredito');
     }
-    public function asignarcredito(){
-        return view('asignarPrestamo');
+    public function asignarcredito($id){
+        $persona=Persona::where('id','=',$id)->get();
+        return view('asignarPrestamo', compact('persona'));
     }
     
 }

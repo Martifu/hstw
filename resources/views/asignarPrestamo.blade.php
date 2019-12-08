@@ -39,13 +39,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>CURP</label>
-                                            <input type="text" class="form-control" id="curp" placeholder="" value="">
+                                            <input type="text" class="form-control" id="curp" placeholder="" value="{{$persona[0]->curp}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 pr-4">
                                         <div class="form-group">
                                             <label>RFC</label>
-                                            <input type="text" class="form-control" id="rfc" placeholder="" value="">
+                                            <input type="text" class="form-control" id="rfc" placeholder="" value="{{$persona[0]->rfc}}">
                                         </div>
                                     </div>
 
@@ -54,19 +54,19 @@
                                     <div class="col-md-4 pr-1">
                                         <div class="form-group">
                                             <label>Nombre</label>
-                                            <input type="text" class="form-control" id="nombre" placeholder="" value="">
+                                            <input type="text" class="form-control" id="nombre" placeholder="" value="{{$persona[0]->nombre}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label>Apellido Paterno</label>
-                                            <input type="text" class="form-control" id="apellidoP" placeholder="" value="">
+                                            <input type="text" class="form-control" id="apellidoP" placeholder="" value="{{$persona[0]->apellido_p}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label>Apellido Materno</label>
-                                            <input type="text" class="form-control" id="apellidoM" placeholder="" value="">
+                                            <input type="text" class="form-control" id="apellidoM" placeholder="" value="{{$persona[0]->apellido_m}}">
                                         </div>
                                     </div>
                                 </div>
@@ -78,11 +78,11 @@
                                                    id="date"
                                                    name="value_specified"
                                                    class="form-control wbn-datepicker"
-                                                   value="" />
+                                                   value="{{$persona[0]->fecha_nacimiento}}" />
                                           </div>
                                     </div>
                                 </div>
-                                <a  class="btn btn-info btn-fill pull-right" id="checar" style="color: white">Verificar</a>
+                                <button  class="btn btn-info btn-fill pull-right" id="checar" style="color: white">Siguiente</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
