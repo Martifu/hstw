@@ -17,31 +17,103 @@
 </header>
 <main>
 
-    <table border="1" cellspacing="0" cellpadding="0" class="table2">
-        <thead>
-        <tr>
-         
-            <th class="no">Informacion General</th>
-            
-        </tr>
-        <tr>
-        <th class="Descripcion">Diego Alan De Leon Morales</th>
-        </tr>
-        <tr>
-        <th class="Descripcion">Domicilio</th>
-        </tr>
-    
-        <tr>
-            <th class="Credito">Torre de israel 833 </th>
-           
-        </tr>
-        
-        
-        
-        </thead>
-    </table>
-    
+    <table border="1" cellspacing="0" cellpadding="0"  class="table table-bordered">>
    
+  <thead>
+  <thead class="thead-dark">
+    <tr class="bg-primary">
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Datos Personales</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+    <tr>
+
+
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido paterno</th>
+      <th scope="col">Apellido materno</th>
+      <th scope="col">Fecha de nacimiento</th>
+    <th scope="col">RFC</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+
+
+    <tr>
+      
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+       
+      <td>Mark</td>
+      <td>Otto</td>
+   
+    </tr>
+    <thead class="thead-dark">
+    <tr class="bg-primary">
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Domicilio(s)</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+
+    <tr>
+    
+    <td>Calle y numero</td>
+<td>CP</td>
+<td>Colonia</td>
+<td>Ciudad y estado</td>
+<td>Pais</td>
+    </tr>
+    <thead class="thead-dark">
+    <tr class="bg-primary">
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th  style=" width: 130px;"scope="col">Creditos bancarios</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+   
+    <tr>
+
+<th scope="col">Institucion</th>
+<th scope="col">Codigo</th>
+<th scope="col">Descripcion</th>
+<th scope="col">Estado</th>
+<th scope="col">Comportamiento</th>
+
+</tr>
+<thead class="thead-dark">
+    <tr class="bg-primary">
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th style=" width: 160px;" scope="col">Creditos no bancarios</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+</thead>
+<tbody>
+<tr>
+<th scope="col">Institucion</th>
+<th scope="col">Codigo</th>
+<th scope="col">Descripcion</th>
+<th scope="col">Estado</th>
+<th scope="col">Comportamiento</th>
+</tr>
+
+  </tbody>
+</table>
 </main>
 
 </body>

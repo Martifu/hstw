@@ -67,6 +67,8 @@ Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
 
 
 
+
+
 // Esta no hacerle caso es la vista que habia creado
 Route::get('/basedani', function ()
 {
