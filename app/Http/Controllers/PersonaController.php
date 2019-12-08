@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
-
+use App\TarjetasPersona;
 
 class PersonaController extends Controller
 {
@@ -15,8 +15,16 @@ class PersonaController extends Controller
     public function asignartDebito(){
 
     }
-    public function asignartCredito(){
-
+    public function asignartCredito(Request $request){
+        $persona = Persona::where('id','=',$request->idguardar)->get();
+        $tarjeta = new TarjetasPersona([
+            'numero' => $request->numero,
+            'fecha' => $request->fecha,
+            'tipo' => $request->tipo
+            ]);
+//        $persona->tarjeta()->save($tarjeta);
+//        $personaG = Persona::where('id','=',$request->idguardar)->with('tarjeta')->get();
+        return $tarjeta;
     }
     public function personas()
     {
@@ -32,23 +40,26 @@ class PersonaController extends Controller
         foreach ($persona2 as $key => $a) {
             $rv=$a['adeudo']+$rv;
         }
+        $x="no";
         $credito="red";
         $rv=1000;
         if($rv<=1000)
         {
             $credito="green";
             $hr='asignarcredito';
+            $x="si";
         }
         else {
             if ($rv<=3000)
             $credito ="yellow";
             $hr='asignarcredito';
+            $x="si";
         }
 
 
         return response()->json([
             'success' => true,
-            'credito' => 'si',
+            'credito' => $x,
             'persona' => $persona,
             'color'=>$credito,
             'href'=>$hr
@@ -162,7 +173,7 @@ class PersonaController extends Controller
         return view('asignarCredito');
     }
     public function asignarcredito(){
-        return dd(MBuroCredito::all());
+        return view('asignarPrestamo');
     }
 
 

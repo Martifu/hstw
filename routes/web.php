@@ -18,6 +18,7 @@ Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
+Route::post('/tcredito','PersonaController@asignartCredito');
 
 Route::get('/personas','PersonaController@traerpersonas');
 Route::get('/traerpersonas','PersonaController@personas');

@@ -83,16 +83,16 @@
                 </div>
             </div>
         </div>
-        <div class="buro">
+        <div style="display:none;" class="buro">
             <div class="header">Buro de Credito</div>
             <div class="scrolling content">
                 <table class="ui celled table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Paterno</th>
-                            <th>Materno</th>
-                            <th>institucion</th>
+                            <th>Codigo</th>
+                            <th>Institucion</th>
+                            <th>Descripcion</th>
+                            <th>estado</th>
                             <th>adeudo</th>
                         </tr>
                     </thead>
@@ -116,6 +116,7 @@
             $('.wbn-datepicker').datepicker();
 
             $('#verificar').click(function (e) {
+                
                 var token = $("input[name='_token']").val();
             var curp;
             var rfc;
@@ -147,7 +148,7 @@
                success:function (response) {
                    tabla.html('');
                    $.each(response, function (i,v) {
-                       tabla.append( '<tr><td>'+v.nombre+'</td><td >'+v.rfc+'</td><td>'+v['instituciones']['0'].nombre+'</td>  </tr>')
+                       tabla.append( '<tr><td>'+v['instituciones']['0'].codigo+'</td><td >'+v['instituciones']['0'].nombre+'</td><td >'+v['instituciones']['0'].descripcion+'</td><td>'+v.estado+'</td><td>'+v.adeudo+'</td>  </tr>')
                    });
                }
            });
@@ -168,13 +169,24 @@
                     url: '/verificar-buro',
                     success: function(response){
                         console.log(response['credito']);
+                            if(response['credito']=='si'){
                             $.notify({
                                 // options
                                 message: 'El cliente no tiene problemas con buró de crédito'
                             },{
                                 // settings
                                 type: 'success'
+                            });}
+                            else{
+                                $.notify({
+                                // options
+                                message: 'El cliente no tiene permiso para una tarjeta de credito'
+                            },{
+                                // settings
+                                type: 'danger'
                             });
+                            }
+
                             $('.card-cliente').remove();
                             $('.main').append('                <div class="col-md-4 card-cliente">\n' +
                                 '                    <div class="card card-user">\n' +
@@ -184,7 +196,7 @@
                                 '                        <div class="card-body">\n' +
                                 '                            <div class="author">\n' +
                                 '                                <p href="#">\n' +
-                                '                                    <img class="avatar border-info"  src="{{asset('assets/img/user-default.png')}}" alt="...">\n' +'' +
+                                '                                    <img class="avatar border-info"  src="{{asset('+assets/img/user-default.png+')}}" alt="...">\n' +'' +
                                 '                                    <input id="personaid" name="" type="hidden" value="'+response['persona'][0]["id"]+'">'+
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
@@ -203,7 +215,7 @@
                                                          
 
                                 '                            <a href="'+response['href']+'" style="background:'+response['color']+'; color:white;" value="debito" class="btn  " id="asignarDebito">\n' +
-                                '                               Débito\n' +
+                                '                               Prestamos\n' +
                                 '                            </a>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
@@ -216,6 +228,7 @@
 
                     }
                 });
+                $(".buro").show(); 
 
         });
         $('#asignarDebito').click(function(e){
