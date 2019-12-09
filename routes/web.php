@@ -22,7 +22,7 @@ Route::get('/prestamos',function (){
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
-Route::post('verificar-buro', 'PersonaController@verificaBuro');
+Route::post('verificar-buro', 'PersonaController@verificarBuro');
 Route::post('/tcredito','PersonaController@asignartCredito');
 
 Route::get('/personas','PersonaController@traerpersonas');
@@ -33,7 +33,6 @@ Route::post('/borrarpersona','PersonaController@borrarper');
 
 Route::get('/tarjetas','PersonaController@tarjetas');
 
-Route::post('verificar-buro', 'PersonaController@verificaBuro');
 Route::get('/', function ()
 {
     return view('inicio');

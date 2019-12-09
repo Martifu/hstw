@@ -42,11 +42,9 @@ class PersonaController extends Controller
     }
 
 
-    public function verificaBuro(Request $request)
-    {
-        $persona = Persona::where('curp', '=', $request->curp)->get();
 
-    public function verificaBuro(Request $request){
+
+    public function verificarBuro(Request $request){
         $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
             ->orWhere('curp','=',$request->curp)
             ->orWhere(function($q) use ($request){
@@ -286,26 +284,28 @@ class PersonaController extends Controller
             else{
                 return redirect('/prestamos');
             }
+            $persona2 = Persona::where('curp','=','2')->get();
+            $rv=0;
+            foreach ($persona as $key => $a) {
+                $rv=$a['adeudo']+$rv;
+            }
+            $credito="red";
+            $rv=1000;
+            if($rv<=1000)
+            {
+                $credito="green";
+            }
+            else {
+                if ($rv<=3000)
+                    $credito ="yellow";
+            }
+            // $ee=$persona2['id'];
+            dd($persona2['0']['id']);
         }
-    }
 
-        $persona2 = Persona::where('curp','=','2')->get();
-        $rv=0;
-        foreach ($persona as $key => $a) {
-            $rv=$a['adeudo']+$rv;
-        }
-        $credito="red";
-        $rv=1000;
-        if($rv<=1000)
-        {
-            $credito="green";
-        }
-        else {
-            if ($rv<=3000)
-            $credito ="yellow";
-        }
-       // $ee=$persona2['id'];
-        dd($persona2['0']['id']);
+
+
+
     }
     public function credito(){
         return view('asignarCredito');
