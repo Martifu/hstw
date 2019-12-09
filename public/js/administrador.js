@@ -35,12 +35,4 @@ $(document).ready(function () {
         $("#asignarTarjetas").removeClass("active");
         $("#reportes").removeClass("active");
     }
-    else if(textoNav == " Asignacion de credito ")
-    {
-        $('#AsignarPrestamos').addClass('active');
-    }
-    else if(textoNav == " Asignacion de Prestamo ")
-    {
-        $('#AsignarPrestamos').addClass('active');
-    }
 });

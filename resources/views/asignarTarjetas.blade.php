@@ -137,8 +137,6 @@
                                 // settings
                                 type: 'danger'
                             });
-
-                            console.log(response['personaBuro'][0]['estado']);
                             $('.card-cliente').remove();
                             $('.main').append('                <div class="col-md-4 card-cliente">\n' +
                                 '                    <div class="card card-user">\n' +
@@ -153,11 +151,13 @@
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
                                 '                                <p class="description">\n' +
-                                '                                    Estatus: '+ response['personaBuro'][0]['estado']+'\n' +
+                                '                                    Estatus:\n' +
                                 '                                </p>\n' +
                                 '                            </div>\n' +
                                 '                            <p class="description text-center">\n' +
-                                '                                <span class="badge badge-'+response['personaBuro'][0]['comportamiento']+'">Comportamiento</span>\n' +
+                                '                                "Lamborghini Mercy\n' +
+                                '                                <br> Your chick she so thirsty\n' +
+                                '                                <br> I\'m in that two seat Lambo"\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                        <hr>\n' +
@@ -193,11 +193,13 @@
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
                                 '                                <p class="description">\n' +
-                                '                                     Estatus: '+ response['personaBuro'][0]['estado']+'\n' +
+                                '                                    Estatus:\n' +
                                 '                                </p>\n' +
                                 '                            </div>\n' +
                                 '                            <p class="description text-center">\n' +
-                                '                                <span class="badge badge-'+response['personaBuro'][0]['comportamiento']+'">Comportamiento</span>\n' +
+                                '                                "Lamborghini Mercy\n' +
+                                '                                <br> Your chick she so thirsty\n' +
+                                '                                <br> I\'m in that two seat Lambo"\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                        <hr>\n' +
@@ -418,16 +420,7 @@
                         },
                     url: '/tcredito',
                     success : function(response){
-                        $.notify({
-                            // options
-                            message: 'Se ha guardado la tarjeta'
-                        },{
-                            // settings
-                            type: 'success'
-                        });
-                        setTimeout(function(){
-                            location.href = '/tarjetas';
-                        }, 3000);
+                        location.href = '/tarjetas';
                     }
                 });
 
@@ -458,16 +451,7 @@
                         },
                     url: '/tcredito',
                     success: function (response) {
-                        $.notify({
-                            // options
-                            message: 'Se ha guardado la tarjeta'
-                        },{
-                            // settings
-                            type: 'success'
-                        });
-                        setTimeout(function(){
-                            location.href = '/tarjetas';
-                        }, 3000);
+                        location.href = '/tarjetas';
                     }
                 });
             });

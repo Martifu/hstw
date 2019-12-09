@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+
+    <file url="file://$PROJECT_DIR$/app/Direccion.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Direcciones.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/composer.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/app.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/AsignarPrestamos.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/login.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/pdf/reporte_calcularprestamo.blade.php" charset="UTF-8" />
+
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Persona.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/TarjetasPersona.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/login.blade.php" charset="UTF-8" />
+
     <file url="file://$PROJECT_DIR$/routes/web.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>

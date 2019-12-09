@@ -190,6 +190,31 @@
                             <h5>Fecha de nacimiento:</h5>
                             <input name="nacimiento" class="nacimienton">
                         </div>
+                        <div class="form-group col-6">
+                            <h5>Calle:</h5>
+                            <input name="calle" class="calle"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Numero:</h5>
+                            <input name="numero" class="numero"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Calles:</h5>
+                            <input name="calles" class="calles"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Codigo Postal:</h5>
+                            <input name="cp" class="cp"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Colonia:</h5>
+                            <input name="colonia" class="colonia"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Ciudad:</h5>
+                            <input name="ciudad" class="ciudad"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Estado:</h5>
+                            <input name="estado" class="estado"  style="width: 180px;">
+                        </div><div class="form-group col-6">
+                            <h5>Pais:</h5>
+                            <input name="pais" class=pais""  style="width: 180px;">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -271,6 +296,7 @@
                     }
                 });
 
+
             });
             $(".act").click(function () {
                 var id = $('.id').attr("placeholder");
@@ -307,8 +333,11 @@
                         $(".c").attr("placeholder", response["curp"]);
                         $(".r").val("");
                         $(".r").attr("placeholder", response["rfc"]);
+
                     }
                 });
+
+
                 location.reload();
             });
 
@@ -363,6 +392,15 @@
                 var curp = $('.cn').val();
                 var rfc = $('.rn').val();
                 var token = $("input[name=_token]").val();
+                var calle= $('calle').val();
+                var numero= $('numero').val();
+                var calles= $('calles').val();
+                var cp= $('cp').val();
+                var colonia= $('colonia').val();
+                var ciudad= $('ciudad').val();
+                var estado= $('estado').val();
+                var pais= $('pais').val();
+
                 $.ajax({
                     url: '/registrar',
                     dataType: 'json',
@@ -374,13 +412,21 @@
                         nacimiento: nacimiento,
                         curp: curp,
                         rfc: rfc,
+                        calle: calle,
+                        numero: numero,
+                        calles: calles,
+                        cp: cp,
+                        colonia: colonia,
+                        ciudad: ciudad,
+                        estado: estado,
+                        pais: pais,
                         _token: token
                     },
                     success: function (response) {
                         console.log(response)
                     }
                 });
-                location.reload();
+
             })
         });
             $(document).ready(function(){
