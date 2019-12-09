@@ -14,6 +14,11 @@
 
 Route::post('/registrar','PersonaController@nuevapersona');
 
+Route::post('calcularprestamo', "PersonaController@calcularprestamo");
+
+Route::get('/prestamos',function (){
+    return view('AsignarPrestamos');
+});
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
@@ -56,6 +61,23 @@ Route::post('generarReporte', "reportespdfController@reporte");
 Route::get('/burocredito',['middleware'=>'autenticacion','uses'=>"BuroCreditoController@PersonasBuro"]);
 Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
 
-Route::get('/credito',['middleware'=>'autenticacion','uses'=>'PersonaController@credito']);
-Route::get('/asignarcredito','PersonaController@asignarcredito');
+
+
+
+
+
+
+// Esta no hacerle caso es la vista que habia creado
+Route::get('/basedani', function ()
+{
+   return view('baseAdministradorcopia');
+});
+
+
+
+
+Route::get('/credito','PersonaController@credito');
+Route::get('/asignarcredito/{id}','PersonaController@asignarcredito');
+
+Route::post('/guardarprestamo', "PersonaController@guardarprestamo");
 
