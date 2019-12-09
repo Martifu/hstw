@@ -70,7 +70,7 @@
                 <td>{{$Prestamo['pagoapagar']}}</td>
                 <td>{{$Prestamo['interes']}}</td>
                 <td>{{$Prestamo['monto_solicitado']}}</td>
-                <td>{{$Prestamo['total']}}</td>
+                <td>{{$pagospendientes[$i]}}</td>
             </tr>
             @endfor
         </tbody>

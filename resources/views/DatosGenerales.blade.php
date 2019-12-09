@@ -213,7 +213,7 @@
                             <input name="estado" class="estado"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Pais:</h5>
-                            <input name="pais" class=pais""  style="width: 180px;">
+                            <input name="pais" class="pais"  style="width: 180px;">
                         </div>
                     </div>
                 </div>
@@ -392,14 +392,14 @@
                 var curp = $('.cn').val();
                 var rfc = $('.rn').val();
                 var token = $("input[name=_token]").val();
-                var calle= $('calle').val();
-                var numero= $('numero').val();
-                var calles= $('calles').val();
-                var cp= $('cp').val();
-                var colonia= $('colonia').val();
-                var ciudad= $('ciudad').val();
-                var estado= $('estado').val();
-                var pais= $('pais').val();
+                var calle= $('.calle').val();
+                var numero= $('.numero').val();
+                var calles= $('.calles').val();
+                var cp= $('.cp').val();
+                var colonia= $('.colonia').val();
+                var ciudad= $('.ciudad').val();
+                var estado= $('.estado').val();
+                var pais= $('.pais').val();
 
                 $.ajax({
                     url: '/registrar',
@@ -426,7 +426,7 @@
                         console.log(response)
                     }
                 });
-
+                location.reload();
             })
         });
             $(document).ready(function(){
