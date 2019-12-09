@@ -196,7 +196,7 @@
                                 '                        <div class="card-body">\n' +
                                 '                            <div class="author">\n' +
                                 '                                <p href="#">\n' +
-                                '                                    <img class="avatar border-info"  src="{{asset('+assets/img/user-default.png+')}}" alt="...">\n' +'' +
+                                '                                    <img class="avatar border-info"  src="{{asset('+assets/img/user.png+')}}" alt="...">\n' +'' +
                                 '                                    <input id="personaid" name="" type="hidden" value="'+response['persona'][0]["id"]+'">'+
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
@@ -222,12 +222,12 @@
                                 '                </div>\n' +
                                 '            </div>\n' +
                                 '        </div>\n' +
-                                '    </div>');
+                                '    </div>')
                                 
                         
 
                     }
-                });
+                })
                 $(".buro").show(); 
 
         });

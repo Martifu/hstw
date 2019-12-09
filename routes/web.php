@@ -81,3 +81,5 @@ Route::get('/basedani', function ()
 Route::get('/credito','PersonaController@credito');
 Route::get('/asignarcredito/{id}','PersonaController@asignarcredito');
 
+Route::post('/guardarprestamo', "PersonaController@guardarprestamo");
+

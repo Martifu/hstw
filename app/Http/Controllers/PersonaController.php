@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
 use App\TarjetasPersona;
+use App\mcredito;
 
 class PersonaController extends Controller
 {
@@ -70,7 +71,7 @@ class PersonaController extends Controller
 
         return response()->json([
             'success' => true,
-            'credito' => 'no',
+            'credito' => $x,
             'personaBuro' => $personaBuro,
             'persona' => $persona,
             'color'=>$credito,
@@ -155,7 +156,12 @@ class PersonaController extends Controller
 
     public function checarburo(Request $request)
     {
-        $persona =  MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
+        $persona = MBuroCredito::where('rfc', '=', $request->rfc)
+            ->orWhere('curp','=',$request->curp)
+            ->orWhere(function($q) use ($request){
+                $q->where('fecha_nacimiento','=', $request->date);
+                $q->where('nombre','=', $request->nombre);
+            })->with('instituciones')->get();
 
 
         return $persona;
@@ -191,6 +197,37 @@ class PersonaController extends Controller
         return view('asignarPrestamo', compact('persona'));
     }
 
+    public function guardarprestamo(Request $request){
+        $credito = new mcredito();
+        $credito->id_persona = $request->persona;
+        $credito->prestamo = $request->prestamo;
+        $credito->anos = $request->ano;
+        $credito->interes = $request->interes;
+        $credito->tipo_pago ="sd";
+        $credito->pago = $request->pago;
+        $credito->save();
 
+        $persona=Persona::where('id','=',$request->persona)->get();
+
+        $mb = new MBuroCredito();
+        $mb->nombre = $persona['0']['nombre'];
+        $mb->apellido_p = $persona['0']['apellido_p'];
+        $mb->apellido_m = $persona['0']['apellido_m'];
+        $mb->fecha_nacimiento = $persona['0']['fecha_nacimiento'];
+        $mb->rfc =$persona['0']['rfc'];
+        $mb->id_direcciones = 1;
+        $mb->adeudo = $request->pago;
+        $mb->id_instutuion =3;
+        $mb->estado = "activo";
+        $mb->comportamiento ="activo";
+        $mb->curp = $persona['0']['curp'];
+        $mb->save();
+
+
+        return response()->json([
+            'success' => true,
+            'credito' => 'si'
+        ]);
+    }
 
 }
