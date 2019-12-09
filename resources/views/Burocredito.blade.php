@@ -43,7 +43,7 @@
     </style>
 
 
-<form method="post" action="GenerarReporteBuro">
+
     <div class="card p-7 m-4" style="max-width: 100%;">
         <div class="card-header">
             <h3>Datos Personales</h3>
@@ -63,11 +63,12 @@
                 
             </tr>
             <tr class="warning no-result">
-                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                <td colspan="4"><i class="fa fa-warning"></i> Sin resultados</td>
             </tr>
             </thead>
             <tbody>
             @foreach($personas as $persona)
+            <input type="hidden" class="id" value="{{$persona->id}}" name="id">
                 <tr>
                   <th>{{$persona['nombre']}}</th>
                     <td>{{$persona['apellido_p']}}</td>
@@ -75,11 +76,12 @@
                     <td>{{$persona['fecha_nacimiento']}}</td>
                     <th>{{$persona['rfc']}}</th>
                     <th>{{$persona['curp']}}</th>
-                  {{--  <th>{{$persona->direcciones['calle']}}</th>--}}
+                  {{--  <th>{{$persona->direcciones['numero']}}</th>--}}
                     <th>
                         <div class="col offset-5"></div>
                         <div class="col">
-                            <button  class="btn btn-primary btn-report font-weight-bold">Primary</button>
+                        <button class="btn btn-primary btn-report font-weight-bold" data-toggle="modal" data-target="#exampleModalReporte">Generar reporte</button>
+                            
                         </div>
                         
                     </th>
@@ -109,9 +111,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                            <form method="post" action="reporte_buro">
                                 <label for="">Mensaje:</label>
-                                <input id="numCliente" name="numCliente" type="text" class="form-control titulo">
+                                <input type="text" class="form-control mensaje">
                             </div>
                         </div>
                     </div>
@@ -120,9 +121,8 @@
                     <button type="button" class="btn btn-secondary btn-generico-cancelar" data-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="button"  class="btn btn-primary btn-reporte btn-generico">
-                        Confirmar
-                    </button>
+                    <button  id="confirmarReporte" class="btn btn-primary btn-generico confirmarReporte">
+                                          Confirmar</button>
                     
                 </div>
             </div>
@@ -131,33 +131,8 @@
 
 
    
-    <!-- Modal -->
-    <div class="modal fade modal-inf" id="exampleModalCenter" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Información Del Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <h6 class="nom"></h6>
-                        <h6 class="nac"></h6>
-                        <h6 class="curp"></h6>
-                        <h6 class="rfc"></h6>
-                    </div>
-
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  
+ 
     </form>
    
 
@@ -165,30 +140,6 @@
 
 @section('javascript')
     <script type="text/javascript">
-           $('.btn-informacion').on("click",function () {
-                var token = $('input[name=_token]').val();
-                var id = $(this).parent().parent().find('.id').val();
-                var nombre = $('.infoserie');
-               
-                nombre.html('');
-               
-                $.ajax({
-                    url: "/Burocredito",
-                    type: 'POST',
-                    datatype: 'json',
-                    data: {
-                        id: id,
-                        _token: token
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        $('#modalInfo').modal('show');
-                        nombre.html(response[0].nombre['nombre']);
-                        
-                    }
-                });
-            });
-            //Agregar 
 
         $(document).ready(function () {
             $(".search").keyup(function () {
@@ -219,8 +170,37 @@
                     $('.no-result').hide();
                 }
             });
-        });
+       
 
+            $('.btn-report').click(function () {
+                var token = $('input[name=_token]').val();
+                var values = [];
+                $("input[name='id']").each(function() {
+                    values.push($(this).val());
+                });
+                var mensaje = $('.mensaje').val();
+                values.push(mensaje);
+                console.log(values);
+            
+                var load = $('#confirmarReporte');
+                $.ajax({
+                    url: "/GenerarReporteBuro",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: values,
+                        _token: token
+                    },
+                    success: function (response) {
+                       
+                       
+                        
+                    }
+                });
+            });
+         });
+        
+       
 
      
     </script>
