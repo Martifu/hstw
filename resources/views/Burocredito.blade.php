@@ -44,7 +44,7 @@
 
 
 
-<form method="post" action="GenerarReporteBuro">
+{{--<form method="post" action="GenerarReporteBuro">--}}
     <div class="card p-7 m-4" style="max-width: 100%;">
         <div class="card-header">
             <h3>Datos Personales</h3>
@@ -81,8 +81,8 @@
                     <th>
                         <div class="col offset-5"></div>
                         <div class="col">
-                        <button class="btn btn-primary btn-report font-weight-bold" data-toggle="modal" data-target="#exampleModalReporte">Generar reporte</button>
-                            
+                        <button  class="btn btn-primary btn-report font-weight-bold"data-toggle="modal" data-target="#exampleModalReporte" >reporte</button>
+                      {{--  <button  class="btn btn-primary btn-report font-weight-bold" >reporte</button>--}}
                         </div>
                         
                     </th>
@@ -95,14 +95,15 @@
 
   
     {{--        Modal titulo reporte--}}
+   
 
-             
+ <form method="post" action="GenerarReporteBuro">
+                            @csrf          
    <div class="modal fade" id="exampleModalReporte" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    {{csrf_field()}}
                     <h5 class="modal-title" id="exampleModalCenterTitle">Agregar mensaje</h5>
                     <button id="btn-numcliente" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -111,6 +112,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
+                        
                             <div class="form-group">
                                 <label for="">Mensaje:</label>
                                 <input type="text" class="form-control mensaje">
@@ -128,7 +130,8 @@
                 </div>
             </div>
         </div>
-    </div>--}}
+        
+    </div>
 
 
    
@@ -182,8 +185,7 @@
                 var mensaje = $('.mensaje').val();
                 values.push(mensaje);
                 console.log(values);
-            
-                var load = $('#confirmarReporte');
+               
                 $.ajax({
                     url: "/GenerarReporteBuro",
                     type: 'POST',
@@ -193,6 +195,7 @@
                         _token: token
                     },
                     success: function (response) {
+                    
                        
                        
                         
