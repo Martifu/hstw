@@ -14,6 +14,11 @@
 
 Route::post('/registrar','PersonaController@nuevapersona');
 
+Route::post('calcularprestamo', "PersonaController@calcularprestamo");
+
+Route::get('/prestamos',function (){
+    return view('AsignarPrestamos');
+});
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
