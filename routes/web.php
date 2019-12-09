@@ -22,53 +22,48 @@ Route::get('/prestamos',function (){
 Route::get('/tarjetas',function (){
     return view('asignarTarjetas');
 });
-Route::get('/credito',function (){
-    return view('asignarCredito');
-});
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
+Route::post('/tcredito','PersonaController@asignartCredito');
 
-Route::get('/personas','PersonaController@traerpersonas');
+Route::get('/gestionarclientes',['middleware'=> 'autenticacion','uses'=>'PersonaController@traerpersonas']);
 Route::get('/traerpersonas','PersonaController@personas');
 Route::POST('/actualizarpersona','PersonaController@traerpersona');
 Route::POST('/actualizar','PersonaController@actualizarinfo');
 Route::post('/borrarpersona','PersonaController@borrarper');
 
-Route::get('/tarjetas',function (){
-    return view('asignarTarjetas');
-});
+Route::get('/tarjetas',['middleware'=>'autenticacion','uses'=>'PersonaController@tarjetas']);
+
 Route::post('verificar-buro', 'PersonaController@verificaBuro');
-Route::get('/', function ()
-{
-    return view('inicio');
-});
+Route::get('/', ['middleware'=>'autenticacion','uses'=>'AdministradorController@vistaInicio']);
 Route::post('checarburo', 'PersonaController@checarburo');
 Route::get('checarburos', 'PersonaController@checarburos');
 
 Route::get('/login', function ()
 {
-   return view('inicio');
+   return view('login');
 });
 
 Route::get('cerrarsesion','AdministradorController@cerrarSesion');
 
-Route::get('/cobranza', "cobranzaController@personas_deuda");
+Route::get('/cobranza', ["middleware"=>"autenticacion", "uses" => "cobranzaController@personas_deuda"]);
 Route::post('getdeudascliente', "cobranzaController@getdeudas");
 
 Route::get('pdf','reportespdfController@invoice');
 
 Route::get('/ingresarusuario','AdministradorController@verificarusuario');
 
-Route::get('/reportes', function ()
-{
-   return view('generarReportes');
-});
+Route::get('/reportes', ['middleware'=>'autenticacion','uses'=>'reportespdfController@vistaReporte']);
 
 Route::post('generarReporte', "reportespdfController@reporte");
 
 #BURO CREDITO
 
-Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
-Route::post('/reporte_buro','BuroCreditoController@reporteburo');
+Route::get('/burocredito',['middleware'=>'autenticacion','uses'=>"BuroCreditoController@PersonasBuro"]);
+Route::post('reporte_buros','BuroCreditoController@reporte');
+Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
+
+
+
 
 
 
@@ -78,4 +73,12 @@ Route::get('/basedani', function ()
 {
    return view('baseAdministradorcopia');
 });
+
+
+
+
+Route::get('/credito','PersonaController@credito');
+Route::get('/asignarcredito/{id}','PersonaController@asignarcredito');
+
+Route::post('/guardarprestamo', "PersonaController@guardarprestamo");
 
