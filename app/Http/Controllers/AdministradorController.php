@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class AdministradorController extends Controller
 {
+    function vistaInicio()
+    {
+        return view('inicio');
+    }
     function verificarusuario(Request $request)
     {
         $correo =  $request->get('correo');
@@ -17,7 +21,7 @@ class AdministradorController extends Controller
         $valor = $administrador == null ? 0 : 1;
         if ($valor)
         {
-            Session::put('usuario', $correo);
+            Session::put(['usuario' => $correo, 'tipo'=>'admin']);
             $respuesta = ["mensaje" => "Bienvenido", "status"=>"200"];
             return $respuesta;
         }
@@ -30,7 +34,7 @@ class AdministradorController extends Controller
     function cerrarSesion()
     {
         Session::flush();
-        return view('DatosGenerales');
+        return view('login');
     }
 
 }

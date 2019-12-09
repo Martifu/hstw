@@ -7,6 +7,10 @@ use App\Persona;
 
 class reportespdfController extends Controller
 {
+    function vistaReporte()
+    {
+        return view('generarReportes');
+    }
     public function reporte(Request $request)
     {
         $numero_cliente = $request->get("numCliente");
