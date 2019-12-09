@@ -23,17 +23,17 @@
                 <div class="col-12 text-center">
                     <div class="bs-example">
                         <div class="form-group">
+                            <label class="float-left" for="exampleInputEmail1">Correo electronico</label>
                             <input type="email" class="form-control" name="inputCorreo" id="inputCorreo" required>
                             <span class="form-highlight"></span>
                             <span class="form-bar"></span>
-                            <label class="float-label" for="exampleInputEmail1">Correo electronico</label>
                         </div>
                         <div class="form-group">
+                            <label class="float-left" for="exampleInputEmail1">Password</label>
                             <input type="password" class="form-control" name="inputPassword" id="inputPassword"
                                    required>
                             <span class="form-highlight"></span>
                             <span class="form-bar"></span>
-                            <label class="float-label" for="exampleInputEmail1">Password</label>
                         </div>
                         <button id="btniniciarsesion" class="btn-color"> Iniciar sesion</button>
                         <div id="notificacion"></div>
