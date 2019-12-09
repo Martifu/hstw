@@ -12,6 +12,7 @@ class MBuroCredito extends Model
     Protected $primaryKey='id';
     Protected $table='buro_credito';
 
+    public $timestamps = false;
     
     public function Direcciones()
     {

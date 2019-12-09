@@ -57,6 +57,23 @@ Route::get('/burocredito',['middleware'=>'autenticacion','uses'=>"BuroCreditoCon
 Route::post('reporte_buros','BuroCreditoController@reporte');
 Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
 
-Route::get('/credito',['middleware'=>'autenticacion','uses'=>'PersonaController@credito']);
-Route::get('/asignarcredito','PersonaController@asignarcredito');
+
+
+
+
+
+
+// Esta no hacerle caso es la vista que habia creado
+Route::get('/basedani', function ()
+{
+   return view('baseAdministradorcopia');
+});
+
+
+
+
+Route::get('/credito','PersonaController@credito');
+Route::get('/asignarcredito/{id}','PersonaController@asignarcredito');
+
+Route::post('/guardarprestamo', "PersonaController@guardarprestamo");
 
