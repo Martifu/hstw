@@ -42,11 +42,9 @@ class PersonaController extends Controller
     }
 
 
-    public function verificaBuro(Request $request)
-    {
-        $persona = Persona::where('curp', '=', $request->curp)->get();
 
-    public function verificaBuro(Request $request){
+
+    public function verificarBuro(Request $request){
         $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
             ->orWhere('curp','=',$request->curp)
             ->orWhere(function($q) use ($request){
@@ -229,8 +227,23 @@ class PersonaController extends Controller
     {
 
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-
-        dd($persona);
+        $persona2 = Persona::where('curp','=','2')->get();
+        $rv=0;
+        foreach ($persona as $key => $a) {
+            $rv=$a['adeudo']+$rv;
+        }
+        $credito="red";
+        $rv=1000;
+        if($rv<=1000)
+        {
+            $credito="green";
+        }
+        else {
+            if ($rv<=3000)
+                $credito ="yellow";
+        }
+        // $ee=$persona2['id'];
+        dd($persona2['0']['id']);
     }
 
 
@@ -276,6 +289,7 @@ class PersonaController extends Controller
                 if ($Prestamo['pago']=="Quincenal"){
 
                     $Prestamo['total_pagos']=$Prestamo['anos']*24;
+                    $Prestamo['pagoapagar']=$Prestamo['total']/ $Prestamo['total_pagos'];
 
 
                 }
@@ -286,26 +300,12 @@ class PersonaController extends Controller
             else{
                 return redirect('/prestamos');
             }
-        }
-    }
 
-        $persona2 = Persona::where('curp','=','2')->get();
-        $rv=0;
-        foreach ($persona as $key => $a) {
-            $rv=$a['adeudo']+$rv;
         }
-        $credito="red";
-        $rv=1000;
-        if($rv<=1000)
-        {
-            $credito="green";
-        }
-        else {
-            if ($rv<=3000)
-            $credito ="yellow";
-        }
-       // $ee=$persona2['id'];
-        dd($persona2['0']['id']);
+
+
+
+
     }
     public function credito(){
         return view('asignarCredito');

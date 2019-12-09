@@ -44,6 +44,7 @@
 
 
 
+<form method="post" action="GenerarReporteBuro">
     <div class="card p-7 m-4" style="max-width: 100%;">
         <div class="card-header">
             <h3>Datos Personales</h3>
@@ -96,7 +97,7 @@
     {{--        Modal titulo reporte--}}
 
              
-    <div class="modal fade" id="exampleModalReporte" tabindex="-1" role="dialog"
+   <div class="modal fade" id="exampleModalReporte" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -127,7 +128,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 
    

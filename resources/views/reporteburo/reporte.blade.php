@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="css/estilosPDF.css" media="all" />
 </head>
 <body>
+<center>
 <header class="clearfix">
     <div id="logo">
-        <img class="logo" src="img/logo.png">
+        <img class="logo" src="img/logo.png" style="width: 20%">
     </div>
     
 </header>
+</center>
 <main>
-<h2>{{$mensaje}}</h2>
+{{--<h2>{{$mensaje}}</h2>--}}
     <table border="1" cellspacing="0" cellpadding="0"  class="table table-bordered">>
    
   <thead>
@@ -150,6 +152,7 @@
     <TBODY>
   </tbody>
 </table>
+{{--<h2>{{$mensaje}}</h2>--}}
 </main>
 
 </body>

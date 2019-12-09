@@ -34,7 +34,9 @@ class BuroCreditoController extends Controller
     public function reporte(Request $request)
     {
         $direcciones = Mburodirecciones::all();
-        $personas = MburoCredito::where('id', $request->id)->with('direcciones')->get(); 
+       $personas = MburoCredito::where('id', $request->id)->with('direcciones')->get();     
+      # $personas = MburoCredito::all();
+
         $fecha = date('Y-m-d');
         $invoice = "2222";
         $view = \View::make('reporteburo.reporte', compact('fecha', 'invoice', 'personas'))->render();
