@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="css/estilosPDF.css" media="all" />
 </head>
 <body>
+<center>
 <header class="clearfix">
     <div id="logo">
-        <img class="logo" src="img/logo.png">
+        <img class="logo" src="img/logo.png" style="width: 20%">
     </div>
     
 </header>
+</center>
 <main>
-
+{{--<h2>{{$mensaje}}</h2>--}}
     <table border="1" cellspacing="0" cellpadding="0"  class="table table-bordered">>
    
   <thead>
@@ -41,18 +43,17 @@
     </tr>
   </thead>
   <tbody>
-
-
-    <tr>
-      
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-       
-      <td>Mark</td>
-      <td>Otto</td>
-   
-    </tr>
+  <TBODY>
+    @foreach($personas as $persona)
+        <tr>
+        <th>{{$persona['nombre']}}</th>
+        <th>{{$persona['apellido_p']}}</th>
+        <th>{{$persona['apellido_m']}}</th>
+        <th>{{$persona['fecha_nacimiento']}}</th>
+        <th>{{$persona['rfc']}}</th>
+        </tr>
+    @endforeach
+    <TBODY>
     <thead class="thead-dark">
     <tr class="bg-primary">
       <th scope="col"></th>
@@ -60,6 +61,7 @@
       <th scope="col">Domicilio(s)</th>
       <th scope="col"></th>
       <th scope="col"></th>
+    </tr>
     </tr>
   </thead>
 
@@ -71,6 +73,18 @@
 <td>Colonia</td>
 <td>Ciudad y estado</td>
 <td>Pais</td>
+
+<TBODY>
+    @foreach($personas as $persona)
+        <tr>
+        <th>{{$persona->direcciones['calle'].'  '.$persona->direcciones['numero']}}</th>
+        <th>{{$persona->direcciones['cp']}}</th>
+        <th>{{$persona->direcciones['colonia']}}</th>
+        <th>{{$persona->direcciones['ciudad'].'  '.$persona->direcciones['estado']}}</th>
+        <th>{{$persona->direcciones['pais']}}</th>
+        </tr>
+    @endforeach
+    <TBODY>
     </tr>
     <thead class="thead-dark">
     <tr class="bg-primary">
@@ -92,6 +106,19 @@
 <th scope="col">Comportamiento</th>
 
 </tr>
+
+
+<TBODY>
+    @foreach($personas as $persona)
+        <tr>
+        <th>{{$persona->instituciones['nombre']}}</th>
+        <th>{{$persona->instituciones['codigo']}}</th>
+        <th>{{$persona->instituciones['descripcion']}}</th>
+        <th>{{$persona->estado}}</th>
+        <th>{{$persona->comportamiento}}</th>
+        </tr>
+    @endforeach
+    <TBODY>
 <thead class="thead-dark">
     <tr class="bg-primary">
       <th scope="col"></th>
@@ -112,8 +139,20 @@
 <th scope="col">Comportamiento</th>
 </tr>
 
+<TBODY>
+    @foreach($personas as $persona)
+        <tr>
+        <th>{{$persona->instituciones['nombre']}}</th>
+        <th>{{$persona->instituciones['codigo']}}</th>
+        <th>{{$persona->instituciones['descripcion']}}</th>
+        <th>{{$persona->estado}}</th>
+        <th>{{$persona->comportamiento}}</th>
+        </tr>
+    @endforeach
+    <TBODY>
   </tbody>
 </table>
+{{--<h2>{{$mensaje}}</h2>--}}
 </main>
 
 </body>
