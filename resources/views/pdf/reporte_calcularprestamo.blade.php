@@ -28,7 +28,7 @@
             <h1>Prestamos</h1>
         </div>
     </div>
-    <table border="1" cellspacing="0" cellpadding="0" style="page-break-after:always;">
+    <table border="1" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
             <th class="Credito">Cantidad anos pagarlo</th>
@@ -64,7 +64,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
         @for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++)
             <tr>
                 <td>{{$i}}</td>
