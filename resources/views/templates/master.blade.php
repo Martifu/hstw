@@ -24,7 +24,6 @@
 </head>
 
 <body>
-@if (Session::has('usuario'))
 <div class="wrapper">
     <div class="sidebar" data-color="purple">
         <div class="sidebar-wrapper">
@@ -35,7 +34,7 @@
             </div>
             <ul class="nav">
                 <li id="gestionClientes">
-                    <a class="nav-link" href="/personas">
+                    <a class="nav-link" href="/gestionarclientes">
                         <img src="{{asset("img/ic_person_24px.png")}}">
                         <p>Gestionar clientes</p>
                     </a>
@@ -47,7 +46,7 @@
                     </a>
                 </li>
                 <li id="buroCredito">
-                    <a class="nav-link" href="/Burocredito">
+                    <a class="nav-link" href="/burocredito">
                         <img src="{{asset("img/ic_import_contacts_24px.png")}}">
                         <p>Buro de credito</p>
                     </a>
@@ -90,46 +89,6 @@
        @yield('contenido', 'Default Content')
     </div>
 </div>
-@else
-
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-sm-12 col-md-6 col-xl-6 d-none d-sm-none d-md-block margin-login">
-                <img class="figura" src="{{asset("img/Figura.png")}}">
-            </div>
-            <div class="col-sm-12 col-md-6 col-xl-6 margin-login">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <img class="tamano-logo" src="{{asset("img/Logo.png")}}">
-                    </div>
-                    <div class="col-12">
-                        <div class="bs-example">
-                            <div class="form-group">
-                                <label class="float-label" for="exampleInputEmail1">Correo electronico</label>
-                                <input type="email" class="form-control" name="inputCorreo" id="inputCorreo" required>
-                                <span class="form-highlight"></span>
-                                <span class="form-bar"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="float-label" for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control" name="inputPassword" id="inputPassword"
-                                       required>
-                                <span class="form-highlight"></span>
-                                <span class="form-bar"></span>
-                            </div>
-                            <div class="text-center">
-                                <button type="button" id="btniniciarsesion" class="btn-color"> Iniciar sesion</button>
-                            </div>
-                            <div id="notificacion"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-@endif
-
 </body>
 
 <!--   Core JS Files   -->
