@@ -16,5 +16,9 @@ class instituciones extends Model
     {
         return $this->belongsTo(MBuroCredito::class,'id_producto');
     }
+    public function instituciones()
+    {
+        return $this->belongsTo(MBuroCredito::class, 'id_instituciones', 'id');
+    }
 
 }
