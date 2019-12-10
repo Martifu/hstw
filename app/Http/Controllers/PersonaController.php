@@ -218,19 +218,19 @@ class PersonaController extends Controller
             $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
 
         }
-        else if($request->curp != null){
+        if($request->curp != null){
             $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
-
         }
-        else if($request->fecha_nacimiento != null){
+        
+        
+            if($request->fecha_nacimiento != null){
             $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
-
         }
-        else if($request->nombre != null){
+        
+         if($request->nombre != null){
             $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
-
         }
-
+        
         
 
 
