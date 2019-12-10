@@ -335,7 +335,7 @@ class PersonaController extends Controller
         $mb->rfc =$persona['0']['rfc'];
         $mb->id_direcciones = 1;
         $mb->adeudo = $request->pago;
-        $mb->id_instutuion =3;
+        $mb->id_instutuion =6;
         $mb->estado = "activo";
         $mb->comportamiento ="activo";
         $mb->curp = $persona['0']['curp'];

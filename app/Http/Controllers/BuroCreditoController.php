@@ -22,9 +22,9 @@ class BuroCreditoController extends Controller
         $Direcciones = Mburodirecciones::all();
         $personas = MburoCredito::all();
         $instituciones = instituciones::all();
-     
-        
-     
+
+
+
 
         return view('Burocredito', compact("personas"));
     }
@@ -33,18 +33,19 @@ class BuroCreditoController extends Controller
 
     public function reporte(Request $request)
     {
-       
-       $personas = MburoCredito::where('id', $request->id)->with('direcciones')->get();     
-      #$personas = MburoCredito::all();
 
+       $personas = MburoCredito::where('id', $request->id)->with('direcciones')->get();
+      #$personas = MburoCredreturn $personas;
         $fecha = date('Y-m-d');
         $invoice = "2222";
-        $view = \View::make('reporteburo.reporte', compact('fecha', 'invoice', 'personas'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);   
-       return $pdf->stream();
-       
+        $mensaje = $request->mensaje;
+        $data = ['personas' => $personas,'fecha'=> $fecha, 'mensaje' => $mensaje];
+        $pdf = PDF::loadView('reporteburo.reporte', $data);
+        return base64_encode($pdf->stream('invoice.pdf'));
+
     }
+
+
 
 
 }

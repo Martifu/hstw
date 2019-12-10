@@ -14,13 +14,14 @@
     <div id="logo">
         <img class="logo" src="img/logo.png" style="width: 20%">
     </div>
-    
+
 </header>
 </center>
 <main>
-{{--<h2>{{$mensaje}}</h2>--}}
+<h2>{{$mensaje}}</h2>
+    {{$personas}}
     <table border="1" cellspacing="0" cellpadding="0"  class="table table-bordered">>
-   
+
   <thead>
   <thead class="thead-dark">
     <tr class="bg-primary">
@@ -39,11 +40,12 @@
       <th scope="col">Apellido materno</th>
       <th scope="col">Fecha de nacimiento</th>
     <th scope="col">RFC</th>
-    
+
     </tr>
   </thead>
   <tbody>
   <TBODY>
+
     @foreach($personas as $persona)
         <tr>
         <th>{{$persona['nombre']}}</th>
@@ -67,7 +69,7 @@
 
 
     <tr>
-    
+
     <td>Calle y numero</td>
 <td>CP</td>
 <td>Colonia</td>
@@ -96,7 +98,7 @@
     </tr>
   </thead>
 
-   
+
     <tr>
 
 <th scope="col">Institucion</th>
