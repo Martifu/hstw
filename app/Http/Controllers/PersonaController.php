@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
 use App\Mburodirecciones;
+use App\instituciones;
 
 use App\Direccion;
 use \PDF;
@@ -281,7 +282,11 @@ class PersonaController extends Controller
                 $credito ="yellow";
         }
         // $ee=$persona2['id'];
-        dd($persona2['id']);
+        $dire=Mburodirecciones::all()->last();
+        $auz= $dire['id'];
+        $insti=instituciones::where('nombre','=',"hstw")->get();
+        $id_isti=$insti['0']['id'];
+        dd($id_isti);
     }
 
 
@@ -382,12 +387,28 @@ class PersonaController extends Controller
         $credito->prestamo = $request->prestamo;
         $credito->anos = $request->ano;
         $credito->interes = $request->interes;
-        $credito->tipo_pago ="sd";
+        $credito->tipo_pago =$request->tipo;
         $credito->pago = $request->pago;
         $credito->save();
 
         $persona=Persona::where('id','=',$request->persona)->get();
         $direcciones= new Mburodirecciones();
+        $direcciones->calle = $request->calle;
+        $direcciones->numero = $request->numero;
+        $direcciones->calles = $request->calles;
+        $direcciones->cp = $request->cp;
+        $direcciones->colonia =$request->colonia;
+        $direcciones->ciudad = $request->ciudad;
+        $direcciones->estado = $request->estado;
+        $direcciones->pais =$request->pais;
+        $direcciones->save();
+
+        $dire=Mburodirecciones::all()->last();
+        $auz= $dire['id'];
+
+        $insti=instituciones::where('nombre','=',"hstw")->get();
+        $id_isti=$insti['0']['id'];
+        
         
 
 
@@ -398,9 +419,9 @@ class PersonaController extends Controller
         $mb->apellido_m = $persona['0']['apellido_m'];
         $mb->fecha_nacimiento = $persona['0']['fecha_nacimiento'];
         $mb->rfc =$persona['0']['rfc'];
-        $mb->id_direcciones = 1;
+        $mb->id_direcciones = $auz;
         $mb->adeudo = $request->pago;
-        $mb->id_instutuion=3;
+        $mb->id_instutuion=$id_isti;
         $mb->estado = "activo";
         $mb->comportamiento ="activo";
         $mb->curp = $persona['0']['curp'];
