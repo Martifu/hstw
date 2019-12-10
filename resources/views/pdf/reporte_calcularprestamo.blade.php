@@ -42,7 +42,7 @@
         <tr>
             <td class="no">{{$Prestamo['anos']}}</td>
             <td class="desc">{{$Prestamo['pago']}}</td>
-            <td class="unit">{{$Prestamo['interes']}}</td>
+            <td class="unit">{{$Prestamo['interes']}}%</td>
             <td class="qty">{{$Prestamo['monto_solicitado']}}</td>
             <td class="total">{{$Prestamo['total']}}</td>
         </tr>
@@ -51,12 +51,13 @@
     <div class="clearfix" >
         <div id="invoice">
             <h1>Pagos a Realizar</h1>
-        </div> 
+        </div>
     </div>
     <table border="1" cellspacing="0" cellpadding="0" class="table2">
         <thead>
         <tr>
             <th class="Credito">No. pago</th>
+            <th class="Credito">Fechas de pago</th>
             <th class="no">Cuota a pagar</th>
             <th class="no">Interes</th>
             <th class="no">Capital amortizado</th>
@@ -67,8 +68,9 @@
         @for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++)
             <tr>
                 <td>{{$i}}</td>
+                <td>{{$fechas[$i]}}</td>
                 <td>{{$Prestamo['pagoapagar']}}</td>
-                <td>{{$Prestamo['interes']}}</td>
+                <td>{{$Prestamo['interes']}}%</td>
                 <td>{{$Prestamo['monto_solicitado']}}</td>
                 <td>{{$pagospendientes[$i]}}</td>
             </tr>

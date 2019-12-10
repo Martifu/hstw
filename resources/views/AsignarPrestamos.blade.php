@@ -43,19 +43,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container row">
-                        <form method="post" action="calcularprestamo">
+                    <div class="container ">
+                        <form method="post" action="calcularprestamo" class="was-validated">
                             @csrf
                             <input name="id" class="id col-md-12" hidden="false">
                             <input type='text' class='form-control' name='curpCliente' id='curpCliente' hidden="false"
                                    placeholder='' value=''>
-                            <div class="form-group col-12">
+                            <div class="form-group text-center">
                                 <h5>Nombre: </h5>
                                 <label name="nombre" class="nombre"></label>
                             </div>
-                            <div class="col-12">
-                                <label for="">Cantidad de años del prestamo</label>
-                                <select class="selectpicker form-control" name="anos">
+                            <div class="form-group col-12 " >
+                                <label for="">Monto solicitado:</label><br>
+                                <input name="monto" class="form-control is-valid" style="width: 100%;" placeholder="$$$$$$$$$$$$$$$$$$$$$$$$$$$" required>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="">Cantidad de años del prestamo:</label>
+                                <select class="form-control" name="anos" class="custom-select" required>
+                                    <option value=""></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -67,19 +72,17 @@
                                 </select>
                             </div>
                             <div class="col-12">
-                                <label for="">Tipo de Pago</label>
-                                <select class="selectpicker form-control" name="tp">
+                                <label for="">Tipo de Pago:</label>
+                                <select class="selectpicker form-control" name="tp" required>
+                                    <option value=""></option>
                                     <option>Mensual</option>
                                     <option>Quincenal</option>
                                 </select>
                             </div>
-                                <div class="form-group col-12">
-                                <label for="">Monto solicitado</label><br>
-                                <input name="monto" class="" placeholder="$$$$$$">
-                                </div>
                             <div class="col-12">
-                                <label for="">Tasa de interes %</label>
-                                <select class="selectpicker form-control" name="interes">
+                                <label for="">Tasa de interes %:</label>
+                                <select class="selectpicker form-control" name="interes"required>
+                                    <option></option>
                                     <option>1</option>
                                     <option>3</option>
                                     <option>5</option>
@@ -90,12 +93,12 @@
                                     <option>35</option>
                                 </select>
                             </div>
-
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" name="update" class="btn btn-primary act">Calcular Prestamo</button>
+                    <button type="submit" name="update" class="btn btn-success act">Calcular Prestamo</button>
                     </form>
                 </div>
             </div>
