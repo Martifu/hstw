@@ -46,12 +46,24 @@ class PersonaController extends Controller
 
 
     public function verificarBuro(Request $request){
-        $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
-            ->orWhere('curp','=',$request->curp)
-            ->orWhere(function($q) use ($request){
-                $q->where('fecha_nacimiento','=', $request->date);
-                $q->where('nombre','=', $request->nombre);
-            })->get();
+        
+            if($request->rfc != null)
+            {
+                $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
+    
+            }
+            if($request->curp != null){
+                $personaBuro = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
+            }
+            
+            
+                if($request->fecha_nacimiento != null){
+                $personaBuro = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
+            }
+            
+             if($request->nombre != null){
+                $personaBuro = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
+            }
         $persona = Persona::where('rfc', '=', $request->rfc)
             ->orWhere('curp','=',$request->curp)
             ->orWhere(function($q) use ($request){
@@ -65,7 +77,6 @@ class PersonaController extends Controller
         }
         $x="no";
         $credito="red";
-        $rv=1000;
         if($rv<=1000)
         {
             $credito="green";
