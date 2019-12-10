@@ -77,7 +77,6 @@ class PersonaController extends Controller
         }
         $x="no";
         $credito="red";
-        $rv=1000;
         if($rv<=1000)
         {
             $credito="green";
