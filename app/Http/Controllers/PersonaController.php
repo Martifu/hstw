@@ -209,15 +209,25 @@ class PersonaController extends Controller
 
     public function checarburo(Request $request)
     {
+        if($request->rfc != null)
+        {
+            $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
 
-        $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
+        }
+        else if($request->curp != null){
+            $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
 
-        $persona = MBuroCredito::where('rfc', '=', $request->rfc)
-            ->orWhere('curp','=',$request->curp)
-            ->orWhere(function($q) use ($request){
-                $q->where('fecha_nacimiento','=', $request->date);
-                $q->where('nombre','=', $request->nombre);
-            })->with('instituciones')->get();
+        }
+        else if($request->fecha_nacimiento != null){
+            $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
+
+        }
+        else if($request->nombre != null){
+            $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
+
+        }
+
+        
 
 
         return $persona;
@@ -227,7 +237,7 @@ class PersonaController extends Controller
     {
 
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        $persona2 = Persona::where('curp','=','2')->get();
+        $persona2 = Persona::all()->last();
         $rv=0;
         foreach ($persona as $key => $a) {
             $rv=$a['adeudo']+$rv;
@@ -243,7 +253,7 @@ class PersonaController extends Controller
                 $credito ="yellow";
         }
         // $ee=$persona2['id'];
-        dd($persona2['0']['id']);
+        dd($persona2['id']);
     }
 
 
