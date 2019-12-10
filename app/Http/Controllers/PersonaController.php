@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
+use App\Mburodirecciones;
 
 use App\Direccion;
 use \PDF;
@@ -385,6 +386,10 @@ class PersonaController extends Controller
         $credito->save();
 
         $persona=Persona::where('id','=',$request->persona)->get();
+        $direcciones= new Mburodirecciones();
+        
+
+
 
         $mb = new MBuroCredito();
         $mb->nombre = $persona['0']['nombre'];
