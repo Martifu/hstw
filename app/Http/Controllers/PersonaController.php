@@ -231,7 +231,7 @@ class PersonaController extends Controller
 
         }
 
-        
+
 
 
         return $persona;
@@ -284,10 +284,10 @@ class PersonaController extends Controller
             $persona = Persona::where("curp", "=", $curp_cliente)->first();
 
             if ($persona!=null) {
-
+                $a = new Carbon();
                 $date = Carbon::now();
                 $date = $date->format('d-m-Y');
-
+                $a= Carbon::now();
                 $Prestamo['anos']=$anos;
                 $Prestamo['monto_solicitado']=$monto;
                 $Prestamo['pago']=$t_pago;
@@ -301,8 +301,10 @@ class PersonaController extends Controller
                     $Prestamo['pagoapagar']=$Prestamo['total']/ $Prestamo['total_pagos'];
                     $p=$Prestamo['total'];
                     $auxiliar=$p;
-                    for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
+                    $mes=$a->get('month');
 
+                    for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
+                        $fechas[$i]=$a->addMonth(1)->format('d-m-Y');
                         $pagospendientes[$i]= $auxiliar-$Prestamo['pagoapagar'];
                         $auxiliar=$auxiliar-$Prestamo['pagoapagar'];
                         if ($auxiliar<=0){
@@ -318,7 +320,7 @@ class PersonaController extends Controller
                     $p=$Prestamo['total'];
                     $auxiliar=$p;
                     for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
-
+                        $fechas[$i]=$a->addDay(15)->format('d-m-Y');
                         $pagospendientes[$i]= $auxiliar-$Prestamo['pagoapagar'];
                         $auxiliar=$auxiliar-$Prestamo['pagoapagar'];
                         if ($auxiliar<=0){
@@ -329,7 +331,7 @@ class PersonaController extends Controller
 
                 }
 
-                return \PDF::loadView('pdf.reporte_calcularprestamo', compact('persona','persona','pagospendientes'), compact('Prestamo','Prestamo','date'))
+                return \PDF::loadView('pdf.reporte_calcularprestamo', compact('persona','persona','pagospendientes','fechas'), compact('Prestamo','Prestamo','date'))
                     ->stream('pdf.reporte_calcularprestamo');
             }
             else{
@@ -382,5 +384,6 @@ class PersonaController extends Controller
             'credito' => 'si'
         ]);
     }
+
 
 }
