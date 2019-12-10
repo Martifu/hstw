@@ -63,6 +63,14 @@ Route::post('generarReporte', "reportespdfController@reporte");
 
 #BURO CREDITO
 
+
+
+Route::get('/burocredito',['middleware'=>'autenticacion','uses'=>"BuroCreditoController@PersonasBuro"]);
+
+Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
+Route::post('reporte_buros','BuroCreditoController@reporte');
+
+Route::post('GenerarReporteBuro', "BuroCreditoController@reporte");
 Route::get('/Burocredito', "BuroCreditoController@PersonasBuro");
 Route::post('/GenerarReporteBuro', "BuroCreditoController@reporte");
 
