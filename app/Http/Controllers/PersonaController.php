@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 use App\TarjetasPersona;
 use App\mcredito;
+use phpDocumentor\Reflection\Types\Array_;
 
 
 class PersonaController extends Controller
@@ -148,8 +149,29 @@ class PersonaController extends Controller
         $curp = $request->curp;
         $rfc = $request->rfc;
         $direccion = new Direccion();
-        $id = Persona::where("curp", "=", $curp)->select("id")->get();
-        $direccion->id_persona = $id;
+        if ($nombre != null) {
+            $persona->nombre = $nombre;
+        }
+        if ($apellido_p != null) {
+            $persona->apellido_p = $apellido_p;
+        }
+        if ($apellido_m != null) {
+            $persona->apellido_m = $apellido_m;
+        }
+        if ($nacimiento != null) {
+            $persona->fecha_nacimiento = $nacimiento;
+        }
+        if ($curp != null) {
+            $persona->curp = $curp;
+        }
+        if ($rfc != null) {
+            $persona->rfc = $rfc;
+        }
+
+        $persona->save();
+        $id = Persona::all()->last();
+        $direccion->id_persona = $id['id'];
+
         $calle = $request->calle;
         $numero = $request->numero;
         $calles = $request->calles;
@@ -172,52 +194,44 @@ class PersonaController extends Controller
             $direccion->cp = $cp;
         }
         if ($colonia != null) {
-            $direccion->nombre = $colonia;
+            $direccion->colonia = $colonia;
         }
         if ($ciudad != null) {
-            $direccion->nombre = $ciudad;
+            $direccion->ciudad = $ciudad;
         }
         if ($estado != null) {
-            $direccion->nombre = $estado;
+            $direccion->estado = $estado;
         }
         if ($pais != null) {
-            $direccion->nombre = $pais;
-        }
-        if ($nombre != null) {
-            $persona->nombre = $nombre;
-        }
-        if ($apellido_p != null) {
-            $persona->apellido_p = $apellido_p;
-        }
-        if ($apellido_m != null) {
-            $persona->apellido_m = $apellido_m;
-        }
-        if ($nacimiento != null) {
-            $persona->fecha_nacimiento = $nacimiento;
-        }
-        if ($curp != null) {
-            $persona->curp = $curp;
-        }
-        if ($rfc != null) {
-            $persona->rfc = $rfc;
+            $direccion->pais = $pais;
         }
 
-        $persona->save();
+        $direccion->save();
         return $persona;
 
     }
 
     public function checarburo(Request $request)
     {
+        if($request->rfc != null)
+        {
+            $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
 
-        $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
-
-        $persona = MBuroCredito::where('rfc', '=', $request->rfc)
-            ->orWhere('curp','=',$request->curp)
-            ->orWhere(function($q) use ($request){
-                $q->where('fecha_nacimiento','=', $request->date);
-                $q->where('nombre','=', $request->nombre);
-            })->with('instituciones')->get();
+        }
+        if($request->curp != null){
+            $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
+        }
+        
+        
+            if($request->fecha_nacimiento != null){
+            $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
+        }
+        
+         if($request->nombre != null){
+            $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
+        }
+        
+        
 
 
         return $persona;
@@ -227,7 +241,7 @@ class PersonaController extends Controller
     {
 
         $persona = MBuroCredito::where('rfc', '=', '5234')->with('instituciones')->get();
-        $persona2 = Persona::where('curp','=','2')->get();
+        $persona2 = Persona::all()->last();
         $rv=0;
         foreach ($persona as $key => $a) {
             $rv=$a['adeudo']+$rv;
@@ -243,7 +257,7 @@ class PersonaController extends Controller
                 $credito ="yellow";
         }
         // $ee=$persona2['id'];
-        dd($persona2['0']['id']);
+        dd($persona2['id']);
     }
 
 
@@ -278,23 +292,44 @@ class PersonaController extends Controller
                 $Prestamo['monto_solicitado']=$monto;
                 $Prestamo['pago']=$t_pago;
                 $Prestamo['interes']=$interes;
-                $Prestamo['total']=$monto*($interes/100)+$monto;
+                $Prestamo['total']=$monto*($interes/100)*$anos+$monto;
+
 
                 if ($Prestamo['pago']=="Mensual"){
 
                     $Prestamo['total_pagos']=$Prestamo['anos']*12;
                     $Prestamo['pagoapagar']=$Prestamo['total']/ $Prestamo['total_pagos'];
+                    $p=$Prestamo['total'];
+                    $auxiliar=$p;
+                    for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
+
+                        $pagospendientes[$i]= $auxiliar-$Prestamo['pagoapagar'];
+                        $auxiliar=$auxiliar-$Prestamo['pagoapagar'];
+                        if ($auxiliar<=0){
+                            $pagospendientes[$i]=0;
+                        }
+                    }
 
                 }
                 if ($Prestamo['pago']=="Quincenal"){
 
                     $Prestamo['total_pagos']=$Prestamo['anos']*24;
                     $Prestamo['pagoapagar']=$Prestamo['total']/ $Prestamo['total_pagos'];
+                    $p=$Prestamo['total'];
+                    $auxiliar=$p;
+                    for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
+
+                        $pagospendientes[$i]= $auxiliar-$Prestamo['pagoapagar'];
+                        $auxiliar=$auxiliar-$Prestamo['pagoapagar'];
+                        if ($auxiliar<=0){
+                            $pagospendientes[$i]=0;
+                        }
+                    }
 
 
                 }
 
-                return \PDF::loadView('pdf.reporte_calcularprestamo', compact('persona','persona'), compact('Prestamo','Prestamo','date'))
+                return \PDF::loadView('pdf.reporte_calcularprestamo', compact('persona','persona','pagospendientes'), compact('Prestamo','Prestamo','date'))
                     ->stream('pdf.reporte_calcularprestamo');
             }
             else{

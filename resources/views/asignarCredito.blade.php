@@ -147,6 +147,7 @@
                },
                success:function (response) {
                    tabla.html('');
+                   console.log(response);
                    $.each(response, function (i,v) {
                        tabla.append( '<tr><td>'+v['instituciones']['0'].codigo+'</td><td >'+v['instituciones']['0'].nombre+'</td><td >'+v['instituciones']['0'].descripcion+'</td><td>'+v.estado+'</td><td>'+v.adeudo+'</td>  </tr>')
                    });

@@ -250,7 +250,7 @@
             var calles = $('#calles').val();
             var colonia = $('#colonia').val();
             var cp = $('#cp').val();;
-            var ciudad = $('#ciudad').val();
+            var ciudad = $('#ciudad').val(); 
             var estado = $('#estado').val();
             var pais = $('#pais').val();
             var persona=$('#id_persona').val();

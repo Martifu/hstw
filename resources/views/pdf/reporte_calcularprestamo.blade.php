@@ -51,7 +51,7 @@
     <div class="clearfix" >
         <div id="invoice">
             <h1>Pagos a Realizar</h1>
-        </div>
+        </div> 
     </div>
     <table border="1" cellspacing="0" cellpadding="0" class="table2">
         <thead>
@@ -70,7 +70,7 @@
                 <td>{{$Prestamo['pagoapagar']}}</td>
                 <td>{{$Prestamo['interes']}}</td>
                 <td>{{$Prestamo['monto_solicitado']}}</td>
-                <td>{{$Prestamo['total']}}</td>
+                <td>{{$pagospendientes[$i]}}</td>
             </tr>
             @endfor
         </tbody>
