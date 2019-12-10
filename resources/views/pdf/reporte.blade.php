@@ -15,9 +15,9 @@
     </div>
     <div class="informacion">
         <h2 class="name">Datos del cliente</h2>
-        <div><b>Nombre: </b> Daniel Rodriguez Lopez</div>
-        <div><b>No. Cuenta: </b> 1</div>
-        <div><b>Fecha de reporte:  </b> 22 diciembre 2019</div>
+        <div><b>Nombre: </b> {{$persona->nombre}}</div>
+        <div><b>No. Cuenta: </b> {{$persona->id}}</div>
+        <div><b>Fecha de reporte:  </b> {{$fecha}}</div>
     </div>
 </header>
 <main>
@@ -32,32 +32,20 @@
             <th class="Credito">Cantidad anos pagarlo</th>
             <th class="Descripcion">Tipo de pago</th>
             <th class="no">Tasa de interes</th>
-            <th class="no">Monto solicita</th>
+            <th class="no">Monto solicitado</th>
             <th class="no">Monto total pagar</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($prestamos as $prestamo)
         <tr>
-            <td class="no">2</td>
-            <td class="desc">quincenal</td>
-            <td class="unit">%13</td>
-            <td class="qty">$30,000</td>
-            <td class="total">$1,200.00</td>
+            <td class="no">{{$prestamo->anos}} anos</td>
+            <td class="desc">{{$prestamo->tipo_pago}}</td>
+            <td class="unit">{{$prestamo->interes}}</td>
+            <td class="qty">${{$prestamo->prestamo}}</td>
+            <td class="total">${{$total}}</td>
         </tr>
-        <tr>
-            <td class="no">2</td>
-            <td class="desc">quincenal</td>
-            <td class="unit">%13</td>
-            <td class="qty">$30,000</td>
-            <td class="total">$1,200.00</td>
-        </tr>
-        <tr>
-            <td class="no">2</td>
-            <td class="desc">quincenal</td>
-            <td class="unit">%13</td>
-            <td class="qty">$30,000</td>
-            <td class="total">$1,200.00</td>
-        </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="clearfix">

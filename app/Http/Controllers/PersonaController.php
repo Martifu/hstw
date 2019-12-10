@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\fechas_pago;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
@@ -394,11 +395,42 @@ class PersonaController extends Controller
         $mb->rfc =$persona['0']['rfc'];
         $mb->id_direcciones = 1;
         $mb->adeudo = $request->pago;
-        $mb->id_instutuion =6;
+        $mb->id_instutuion=3;
         $mb->estado = "activo";
         $mb->comportamiento ="activo";
         $mb->curp = $persona['0']['curp'];
         $mb->save();
+
+        $id_credito = mcredito::all()->last();
+        $anos = $request->ano;
+        $tipo_prestamo = $request->tipo;
+        if ($tipo_prestamo == 'mensual')
+        {
+            $fecha = new Carbon();
+            $totalfechas = $anos*12;
+            for($i = 1; $i < $totalfechas+1; $i++)
+            {
+                $fechas_pago = new fechas_pago();
+                $fechas_pago->id_credito = $id_credito['id'];
+                $fechas_pago->fechas = $fecha->addMonth()->format("Y-m-d");
+                $fechas_pago->monto = $request->prestamo;
+                $fechas_pago->save();
+            }
+        }
+        elseif ($tipo_prestamo = 'quincenal')
+        {
+            $fecha = new Carbon();
+            $totalfechas = $anos*26;
+            for($i = 1; $i < $totalfechas+1; $i++)
+            {
+                $fechas_pago = new fechas_pago();
+                $fechas_pago->id_credito = $id_credito['id'];
+                $fechas_pago->fechas = $fecha->addDay(15)->format('Y-m-d');
+                $fechas_pago->monto = $request->prestamo;
+                $fechas_pago->save();
+            }
+        }
+
 
 
         return response()->json([
