@@ -84,7 +84,7 @@ Route::post('/GenerarReporteBuro', "BuroCreditoController@reporte");
 Route::get('/basedani', function ()
 {
    return view('baseAdministradorcopia');
-}); 
+});
 
 
 

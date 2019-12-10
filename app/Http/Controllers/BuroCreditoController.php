@@ -19,14 +19,14 @@ class BuroCreditoController extends Controller
 {
     function PersonasBuro(Request $request)
     {
-        $Direcciones = Mburodirecciones::all();
+        $direcciones = Mburodirecciones::all();
         $personas = MburoCredito::all();
         $instituciones = instituciones::all();
 
 
 
 
-        return view('Burocredito', compact("personas"));
+        return view('Burocredito', compact("personas", "direcciones"));
     }
 
 
@@ -34,7 +34,7 @@ class BuroCreditoController extends Controller
     public function reporte(Request $request)
     {
 
-       $personas = MburoCredito::where('id', $request->id)->with('direcciones')->get();
+       $personas = MburoCredito::where('id', $request->id)->with('direcciones','instituciones')->get();
       #$personas = MburoCredreturn $personas;
         $fecha = date('Y-m-d');
         $invoice = "2222";

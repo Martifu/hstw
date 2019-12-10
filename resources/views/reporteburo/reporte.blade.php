@@ -18,8 +18,8 @@
 </header>
 </center>
 <main>
-<h2>{{$mensaje}}</h2>
-    {{$personas}}
+
+
     <table border="1" cellspacing="0" cellpadding="0"  class="table table-bordered">>
 
   <thead>
@@ -42,20 +42,19 @@
     <th scope="col">RFC</th>
 
     </tr>
-  </thead>
-  <tbody>
-  <TBODY>
 
-    @foreach($personas as $persona)
+
+
+
         <tr>
-        <th>{{$persona['nombre']}}</th>
-        <th>{{$persona['apellido_p']}}</th>
-        <th>{{$persona['apellido_m']}}</th>
-        <th>{{$persona['fecha_nacimiento']}}</th>
-        <th>{{$persona['rfc']}}</th>
+        <th>{{$personas[0]->nombre}}</th>
+            <th>{{$personas[0]->nombre}}</th>
+            <th>{{$personas[0]->apellido_p}}</th>
+            <th>{{$personas[0]->apellido_m}}</th>
+            <th>{{$personas[0]->rfc}}</th>
         </tr>
-    @endforeach
-    <TBODY>
+
+
     <thead class="thead-dark">
     <tr class="bg-primary">
       <th scope="col"></th>
@@ -64,74 +63,75 @@
       <th scope="col"></th>
       <th scope="col"></th>
     </tr>
-    </tr>
+
+
   </thead>
 
 
-    <tr>
 
-    <td>Calle y numero</td>
-<td>CP</td>
-<td>Colonia</td>
-<td>Ciudad y estado</td>
-<td>Pais</td>
-
-<TBODY>
-    @foreach($personas as $persona)
         <tr>
-        <th>{{$persona->direcciones['calle'].'  '.$persona->direcciones['numero']}}</th>
-        <th>{{$persona->direcciones['cp']}}</th>
-        <th>{{$persona->direcciones['colonia']}}</th>
-        <th>{{$persona->direcciones['ciudad'].'  '.$persona->direcciones['estado']}}</th>
-        <th>{{$persona->direcciones['pais']}}</th>
+
+            <th scope="col">Calle y numero</th>
+            <th scope="col">CP</th>
+            <th scope="col">Colonia</th>
+            <th scope="col">Ciudad y estado</th>
+            <th scope="col">Pais</th>
         </tr>
-    @endforeach
-    <TBODY>
-    </tr>
-    <thead class="thead-dark">
-    <tr class="bg-primary">
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th  style=" width: 130px;"scope="col">Creditos bancarios</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
+
+        <tr>
+            <th>{{$personas[0]->direcciones->calle. ' '.$personas[0]->direcciones->numero }}</th>
+            <th>{{$personas[0]->direcciones->cp}}</th>
+            <th>{{$personas[0]->direcciones->colonia}}</th>
+            <th>{{$personas[0]->direcciones->ciudad. ' '.$personas[0]->direcciones->estado }}</th>
+            <th>{{$personas[0]->direcciones->pais}}</th>
+
+        </tr>
 
 
-    <tr>
 
-<th scope="col">Institucion</th>
-<th scope="col">Codigo</th>
-<th scope="col">Descripcion</th>
-<th scope="col">Estado</th>
-<th scope="col">Comportamiento</th>
+
+        <thead class="thead-dark">
+        <tr class="bg-primary">
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Creditos bancarios</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+<tr>
+    <th scope="col">Institucion</th>
+    <th scope="col">Codigo</th>
+    <th scope="col">Descripcion</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Comportamiento</th>
+
 
 </tr>
 
-
-<TBODY>
-    @foreach($personas as $persona)
         <tr>
-        <th>{{$persona->instituciones['nombre']}}</th>
-        <th>{{$persona->instituciones['codigo']}}</th>
-        <th>{{$persona->instituciones['descripcion']}}</th>
-        <th>{{$persona->estado}}</th>
-        <th>{{$persona->comportamiento}}</th>
+            <th>{{$personas[0]->instituciones[0]->nombre}}</th>
+            <th>{{$personas[0]->instituciones[0]->codigo}}</th>
+            <th>{{$personas[0]->instituciones[0]->descripcion}}</th>
+            <th>{{$personas[0]->estado}}</th>
+            <th>{{$personas[0]->comportamiento}}</th>
         </tr>
-    @endforeach
-    <TBODY>
-<thead class="thead-dark">
-    <tr class="bg-primary">
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th style=" width: 160px;" scope="col">Creditos no bancarios</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
 
-</thead>
+
+
+
+
+        <thead class="thead-dark">
+        <tr class="bg-primary">
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Creditos no bancarios</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+
 <tbody>
 <tr>
 <th scope="col">Institucion</th>
@@ -141,20 +141,20 @@
 <th scope="col">Comportamiento</th>
 </tr>
 
-<TBODY>
-    @foreach($personas as $persona)
+
+
         <tr>
-        <th>{{$persona->instituciones['nombre']}}</th>
-        <th>{{$persona->instituciones['codigo']}}</th>
-        <th>{{$persona->instituciones['descripcion']}}</th>
-        <th>{{$persona->estado}}</th>
-        <th>{{$persona->comportamiento}}</th>
+        <th>{{$personas[0]->instituciones[0]->nombre}}</th>
+        <th>{{$personas[0]->instituciones[0]->codigo}}</th>
+        <th>{{$personas[0]->instituciones[0]->descripcion}}</th>
+        <th>{{$personas[0]->estado}}</th>
+        <th>{{$personas[0]->comportamiento}}</th>
         </tr>
-    @endforeach
-    <TBODY>
+
+
   </tbody>
 </table>
-{{--<h2>{{$mensaje}}</h2>--}}
+<h2>{{$mensaje}}</h2>
 </main>
 
 </body>
