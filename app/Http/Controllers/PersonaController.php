@@ -46,12 +46,24 @@ class PersonaController extends Controller
 
 
     public function verificarBuro(Request $request){
-        $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)
-            ->orWhere('curp','=',$request->curp)
-            ->orWhere(function($q) use ($request){
-                $q->where('fecha_nacimiento','=', $request->date);
-                $q->where('nombre','=', $request->nombre);
-            })->get();
+        
+            if($request->rfc != null)
+            {
+                $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
+    
+            }
+            if($request->curp != null){
+                $personaBuro = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
+            }
+            
+            
+                if($request->fecha_nacimiento != null){
+                $personaBuro = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
+            }
+            
+             if($request->nombre != null){
+                $personaBuro = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
+            }
         $persona = Persona::where('rfc', '=', $request->rfc)
             ->orWhere('curp','=',$request->curp)
             ->orWhere(function($q) use ($request){
@@ -65,7 +77,6 @@ class PersonaController extends Controller
         }
         $x="no";
         $credito="red";
-        $rv=1000;
         if($rv<=1000)
         {
             $credito="green";
@@ -218,19 +229,18 @@ class PersonaController extends Controller
             $persona = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
 
         }
-        else if($request->curp != null){
+        if($request->curp != null){
             $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
-
         }
-        else if($request->fecha_nacimiento != null){
+        
+        
+            if($request->fecha_nacimiento != null){
             $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
-
         }
-        else if($request->nombre != null){
+        
+         if($request->nombre != null){
             $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
-
         }
-
 
 
 
@@ -372,7 +382,7 @@ class PersonaController extends Controller
         $mb->rfc =$persona['0']['rfc'];
         $mb->id_direcciones = 1;
         $mb->adeudo = $request->pago;
-        $mb->id_instutuion =3;
+        $mb->id_instutuion =6;
         $mb->estado = "activo";
         $mb->comportamiento ="activo";
         $mb->curp = $persona['0']['curp'];

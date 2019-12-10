@@ -19,9 +19,13 @@ class MBuroCredito extends Model
         return $this->belongsTo(Mburodirecciones::class,'id_direcciones','id');
     } 
      
-    public function Instituciones()
+    
+    public function instituciones()
     {
-        return $this->belongsTo(instituciones::class, 'id_instituciones', 'id');
+        return $this->hasMany(instituciones::class, 'id');
     }
     
 }
+    
+    
+
