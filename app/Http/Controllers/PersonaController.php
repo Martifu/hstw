@@ -17,13 +17,24 @@ use phpDocumentor\Reflection\Types\Array_;
 
 class PersonaController extends Controller
 {
-    public function tarjetas(){
+    public function tarjetas()
+    {
         return view('asignarTarjetas');
     }
-    public function asignartDebito(){
-
-    }
     public function asignartCredito(Request $request){
+        $tarjeta = new TarjetasPersona();
+        $tarjeta->numero = $request->numero;
+        $tarjeta->fecha = $request->fecha;
+        $tarjeta->tipo = $request->tipo;
+        $tarjeta->id_personas = $request->id;
+        $tarjeta->save();
+
+
+        $persona = Persona::where('id','=',$request->id)->with('tarjeta')->get();
+        return $persona;
+    }
+
+    public function asignartDebito(Request $request){
         $tarjeta = new TarjetasPersona();
         $tarjeta->numero = $request->numero;
         $tarjeta->fecha = $request->fecha;
@@ -46,21 +57,21 @@ class PersonaController extends Controller
 
 
     public function verificarBuro(Request $request){
-        
+
             if($request->rfc != null)
             {
                 $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
-    
+
             }
             if($request->curp != null){
                 $personaBuro = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
             }
-            
-            
+
+
                 if($request->fecha_nacimiento != null){
                 $personaBuro = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
             }
-            
+
              if($request->nombre != null){
                 $personaBuro = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
             }
@@ -232,17 +243,17 @@ class PersonaController extends Controller
         if($request->curp != null){
             $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
         }
-        
-        
+
+
             if($request->fecha_nacimiento != null){
             $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
         }
-        
+
          if($request->nombre != null){
             $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
         }
-        
-        
+
+
 
 
         return $persona;

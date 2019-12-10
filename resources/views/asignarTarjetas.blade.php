@@ -456,7 +456,7 @@
                             tipo: tipo,
                             _token: token
                         },
-                    url: '/tcredito',
+                    url: '/tdebito',
                     success: function (response) {
                         $.notify({
                             // options
