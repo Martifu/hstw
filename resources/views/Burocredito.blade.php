@@ -61,16 +61,18 @@
                 <th class="col-md-2 col-xs-5">RFC</th>
                 <th class="col">CURP</th>
                 <th class="col">GENERAR REPORTE</th>
-                
+
             </tr>
             <tr class="warning no-result">
                 <td colspan="4"><i class="fa fa-warning"></i> Sin resultados</td>
             </tr>
             </thead>
             <tbody>
+            @csrf
             @foreach($personas as $persona)
-            <input type="hidden" class="id" value="{{$persona->id}}" name="id">
+
                 <tr>
+                    <input type="hidden" id="" value="{{$persona->id}}" class="id">
                   <th>{{$persona['nombre']}}</th>
                     <td>{{$persona['apellido_p']}}</td>
                     <td>{{$persona['apellido_m']}}</td>
@@ -81,24 +83,23 @@
                     <th>
                         <div class="col offset-5"></div>
                         <div class="col">
-                        <button  class="btn btn-primary btn-report font-weight-bold"data-toggle="modal" data-target="#exampleModalReporte" >reporte</button>
+                        <button value="{{$persona->id}}"  class="btn btn-primary btn-report font-weight-bold" data-toggle="modal" data-target="#exampleModalReporte" >reporte</button>
                       {{--  <button  class="btn btn-primary btn-report font-weight-bold" >reporte</button>--}}
                         </div>
-                        
+
                     </th>
-                   
+
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
 
-  
-    {{--        Modal titulo reporte--}}
-   
 
- <form method="post" action="GenerarReporteBuro">
-                            @csrf          
+    {{--        Modal titulo reporte--}}
+
+
+
    <div class="modal fade" id="exampleModalReporte" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -112,7 +113,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                        
+
                             <div class="form-group">
                                 <label for="">Mensaje:</label>
                                 <input type="text" class="form-control mensaje">
@@ -126,19 +127,19 @@
                     </button>
                     <button  id="confirmarReporte" class="btn btn-primary btn-generico confirmarReporte">
                                           Confirmar</button>
-                    
+
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
-   
-  
- 
-    </form>
-   
+
+
+
+
+
 
 @stop
 
@@ -174,39 +175,40 @@
                     $('.no-result').hide();
                 }
             });
-       
 
-            $('.btn-report').click(function () {
+
+        $('.table').on('click','.btn-report',function () {
                 var token = $('input[name=_token]').val();
-                var values = [];
-                $("input[name='id']").each(function() {
-                    values.push($(this).val());
-                });
-                var mensaje = $('.mensaje').val();
-                values.push(mensaje);
-                console.log(values);
-               
-                $.ajax({
-                    url: "/GenerarReporteBuro",
-                    type: 'POST',
-                    datatype: 'json',
-                    data: {
-                        id: values,
-                        _token: token
-                    },
-                    success: function (response) {
-                    
-                       
-                       
-                        
-                    }
-                });
+                var id = $(this).val();
+
+                console.log(id);
+
+                $('body').on('click','#confirmarReporte',function () {
+                    var mensaje = $('.mensaje').val();
+                    console.log(id, mensaje)
+                    $.ajax({
+                        url: "/GenerarReporteBuro",
+                        type: 'POST',
+                        datatype: 'json',
+                        data: {
+                            id: id,
+                            mensaje: mensaje,
+                            _token: token
+                        },
+                        success: function (response) {
+                            var pdf= window.open("");
+                            pdf.document.write("<iframe width='100%' height='100%'"+
+                                " src='data:application/pdf;base64, " + encodeURI(response)+"'></iframe>");
+                            location.href='/Burocredito';
+                        }
+                    });
+                })
             });
          });
-        
-       
 
-     
+
+
+
     </script>
 
 
