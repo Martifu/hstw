@@ -197,18 +197,16 @@
                                 '                        <div class="card-body">\n' +
                                 '                            <div class="author">\n' +
                                 '                                <p href="#">\n' +
-                                '                                    <img class="avatar border-info"  src="{{asset('+assets/img/user.png+')}}" alt="...">\n' +'' +
+                                '                                    <img class="avatar border-info"  src="{{asset("assets/img/user.png")}}" alt="...">\n' +'' +
                                 '                                    <input id="personaid" name="" type="hidden" value="'+response['persona'][0]["id"]+'">'+
                                 '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
                                 '                                </p>\n' +
                                 '                                <p class="description">\n' +
-                                '                                    Estatus:abajo'+response['color']+'\n' +
+                                '                                    Estatus: '+response['personaBuro'][0]['comportamiento']+'\n' +
                                 '                                </p>\n' +
                                 '                            </div>\n' +
                                 '                            <p class="description text-center">\n' +
-                                '                                "Lamborghini Mercy\n' +
-                                '                                <br> Your chick she so thirsty\n' +
-                                '                                <br> I\'m in that two seat Lambo"\n' +
+                                '                                <span class="badge badge-'+response['personaBuro'][0]['comportamiento']+'">Comportamiento</span>\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                        <hr>\n' +
