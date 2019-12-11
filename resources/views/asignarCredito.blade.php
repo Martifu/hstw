@@ -170,15 +170,50 @@
                     url: '/verificar-buro',
                     success: function(response){
                         console.log(response['credito']);
-                            if(response['credito']=='si'){
+                        if(response['credito']=='si'){
                             $.notify({
                                 // options
                                 message: 'El cliente no tiene problemas con buró de crédito'
                             },{
                                 // settings
                                 type: 'success'
-                            });}
-                            else{
+                            });
+                            $('.card-cliente').remove();
+                            $('.main').append('                <div class="col-md-4 card-cliente">\n' +
+                                '                    <div class="card card-user">\n' +
+                                '                        <div class="card-image">\n' +
+                                '                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">\n' +
+                                '                        </div>\n' +
+                                '                        <div class="card-body">\n' +
+                                '                            <div class="author">\n' +
+                                '                                <p href="#">\n' +
+                                '                                    <img class="avatar border-info"  src="{{asset("assets/img/user.png")}}" alt="...">\n' +'' +
+                                '                                    <input id="personaid" name="" type="hidden" value="'+response['persona'][0]["id"]+'">'+
+                                '                                    <h5 class="">'+response['persona'][0]["nombre"] +" "+ response['persona'][0]["apellido_p"]+" "+ response['persona'][0]["apellido_m"]+'</h5>\n' +
+                                '                                </p>\n' +
+                                '                                <p class="description">\n' +
+                                '                                    Estatus: '+response['personaBuro'][0]['comportamiento']+'\n' +
+                                '                                </p>\n' +
+                                '                            </div>\n' +
+                                '                            <p class="description text-center">\n' +
+                                '                                <span class="badge badge-'+response['personaBuro'][0]['comportamiento']+'">Comportamiento</span>\n' +
+                                '                            </p>\n' +
+                                '                        </div>\n' +
+                                '                        <hr>\n' +
+                                '                        <div class="button-container mr-auto ml-auto pb-2">\n' +
+                                                         
+
+                                '                            <a href="'+response['href']+'" style="background:'+response['color']+'; color:white;" value="debito" class="btn  " id="asignarDebito">\n' +
+                                '                               Prestamos\n' +
+                                '                            </a>\n' +
+                                '                        </div>\n' +
+                                '                    </div>\n' +
+                                '                </div>\n' +
+                                '            </div>\n' +
+                                '        </div>\n' +
+                                '    </div>')
+                            }
+                            else {
                                 $.notify({
                                 // options
                                 message: 'El cliente no tiene permiso para una tarjeta de credito'
@@ -186,7 +221,8 @@
                                 // settings
                                 type: 'danger'
                             });
-                            }
+                            
+                            
 
                             $('.card-cliente').remove();
                             $('.main').append('                <div class="col-md-4 card-cliente">\n' +
@@ -222,6 +258,7 @@
                                 '            </div>\n' +
                                 '        </div>\n' +
                                 '    </div>')
+                                }
                                 
                         
 

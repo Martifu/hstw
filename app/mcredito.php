@@ -11,4 +11,9 @@ class mcredito extends Model
     
     public $timestamps = false;
     Protected $table='credito';
+
+    function personas_credito()
+    {
+        return $this->hasMany(Persona::class, 'id_persona', 'id');
+    }
 }

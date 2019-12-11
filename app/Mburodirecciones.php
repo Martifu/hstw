@@ -9,6 +9,8 @@ use App\MBuroCredito;
 class Mburodirecciones extends Model
 {
     //
+    
+    public $timestamps = false;
     Protected $primaryKey='id';
     Protected $table='direcciones_buro';
 

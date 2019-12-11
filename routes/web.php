@@ -24,6 +24,7 @@ Route::get('/tarjetas',function (){
 });
 Route::post('verificar-buro', 'PersonaController@verificarBuro');
 Route::post('/tcredito','PersonaController@asignartCredito');
+Route::post('/tdebito','PersonaController@asignartDebito');
 
 Route::get('/personas','PersonaController@traerpersonas');
 Route::get('/traerpersonas','PersonaController@personas');

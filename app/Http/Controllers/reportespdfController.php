@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\mcredito;
 use Illuminate\Http\Request;
 use App\Persona;
 
@@ -17,11 +18,13 @@ class reportespdfController extends Controller
 
         if ($numero_cliente) {
             $persona = Persona::where("id", "=", $numero_cliente)->first();
+            $prestamos = mcredito::all()->where('id_persona','=',$persona->id);
+            $total = $prestamos[0]['prestamo']*($prestamos[0]['interes']/100) + $prestamos[0]['prestamo'];
+
             $datos = $persona ? 1 : 0;
             if ($datos == 1) {
                 $fecha = date('Y-m-d');
-                $invoice = "2222";
-                $view = \View::make('pdf.reporte', compact('fecha', 'invoice'))->render();
+                $view = \View::make('pdf.reporte', compact('persona', 'fecha', 'prestamos','total'))->render();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view, "UTF-8");
                 return $pdf->stream();
@@ -29,49 +32,5 @@ class reportespdfController extends Controller
                 return redirect('/reportes')->with('notificacion', 'No se encontro este usuario');
             }
         }
-        elseif ($nombre_cliente and $fecha_cliente) {
-            $persona = Persona::where("nombre", "=", $nombre_cliente)->where("fecha_nacimiento","=", "$fecha_cliente")->first();
-            $datos = $persona ? 1 : 0;
-            if ($datos == 1) {
-                $fecha = date('Y-m-d');
-                $invoice = "2222";
-                $view = \View::make('pdf.reporte', compact('fecha', 'invoice'))->render();
-                $pdf = \App::make('dompdf.wrapper');
-                $pdf->loadHTML($view);
-                return $pdf->stream();
-            } else {
-                return redirect('/reportes')->with('notificacion', 'No se encontro este usuario');
-            }
-        }
-        elseif ($curp_cliente) {
-            $persona = Persona::where("curp", "=", $curp_cliente)->first();
-            $datos = $persona ? 1 : 0;
-            if ($datos == 1) {
-                $fecha = date('Y-m-d');
-                $invoice = "2222";
-                $view = \View::make('pdf.reporte', compact('fecha', 'invoice'))->render();
-                $pdf = \App::make('dompdf.wrapper');
-                $pdf->loadHTML($view);
-                return $pdf->stream();
-            } else {
-                return redirect('/reportes')->with('notificacion', 'No se encontro este usuario');
-            }
-        }
-        elseif ($rfc_cliente) {
-            $persona = Persona::where("rfc", "=", $rfc_cliente)->first();
-            $datos = $persona ? 1 : 0;
-            if ($datos == 1) {
-                $fecha = date('Y-m-d');
-                $invoice = "2222";
-                $view = \View::make('pdf.reporte', compact('fecha', 'invoice'))->render();
-                $pdf = \App::make('dompdf.wrapper');
-                $pdf->loadHTML($view);
-                return $pdf->stream();
-            } else {
-                return redirect('/reportes')->with('notificacion', 'No se encontro este usuario');
-            }
-        }
-
-
     }
 }

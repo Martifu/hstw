@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\fechas_pago;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\MBuroCredito;
+use App\Mburodirecciones;
+use App\instituciones;
 
 use App\Direccion;
 use \PDF;
@@ -17,13 +20,24 @@ use phpDocumentor\Reflection\Types\Array_;
 
 class PersonaController extends Controller
 {
-    public function tarjetas(){
+    public function tarjetas()
+    {
         return view('asignarTarjetas');
     }
-    public function asignartDebito(){
-
-    }
     public function asignartCredito(Request $request){
+        $tarjeta = new TarjetasPersona();
+        $tarjeta->numero = $request->numero;
+        $tarjeta->fecha = $request->fecha;
+        $tarjeta->tipo = $request->tipo;
+        $tarjeta->id_personas = $request->id;
+        $tarjeta->save();
+
+
+        $persona = Persona::where('id','=',$request->id)->with('tarjeta')->get();
+        return $persona;
+    }
+
+    public function asignartDebito(Request $request){
         $tarjeta = new TarjetasPersona();
         $tarjeta->numero = $request->numero;
         $tarjeta->fecha = $request->fecha;
@@ -84,10 +98,10 @@ class PersonaController extends Controller
             $x="si";
         }
         else {
-            if ($rv<=3000)
+            if ($rv<=3000){
             $credito ="yellow";
             $hr='asignarcredito/'.$persona['0']['id'];
-            $x="si";
+            $x="si";}
         }
 
 
@@ -98,7 +112,8 @@ class PersonaController extends Controller
             'personaBuro' => $personaBuro,
             'persona' => $persona,
             'color'=>$credito,
-            'href'=>$hr
+            'href'=>$hr,
+            'rv'=>$rv
         ]);
 
     }
@@ -283,6 +298,7 @@ class PersonaController extends Controller
 
 
 
+
         return $persona;
     }
 
@@ -306,7 +322,11 @@ class PersonaController extends Controller
                 $credito ="yellow";
         }
         // $ee=$persona2['id'];
-        dd($persona2['id']);
+        $dire=Mburodirecciones::all()->last();
+        $auz= $dire['id'];
+        $insti=instituciones::where('nombre','=',"hstw")->get();
+        $id_isti=$insti['0']['id'];
+        dd($id_isti);
     }
 
 
@@ -408,11 +428,31 @@ class PersonaController extends Controller
         $credito->prestamo = $request->prestamo;
         $credito->anos = $request->ano;
         $credito->interes = $request->interes;
-        $credito->tipo_pago ="sd";
+        $credito->tipo_pago =$request->tipo;
         $credito->pago = $request->pago;
         $credito->save();
 
         $persona=Persona::where('id','=',$request->persona)->get();
+        $direcciones= new Mburodirecciones();
+        $direcciones->calle = $request->calle;
+        $direcciones->numero = $request->numero;
+        $direcciones->calles = $request->calles;
+        $direcciones->cp = $request->cp;
+        $direcciones->colonia =$request->colonia;
+        $direcciones->ciudad = $request->ciudad;
+        $direcciones->estado = $request->estado;
+        $direcciones->pais =$request->pais;
+        $direcciones->save();
+
+        $dire=Mburodirecciones::all()->last();
+        $auz= $dire['id'];
+
+        $insti=instituciones::where('nombre','=',"hstw")->get();
+        $id_isti=$insti['0']['id'];
+        
+        
+
+
 
         $mb = new MBuroCredito();
         $mb->nombre = $persona['0']['nombre'];
@@ -420,13 +460,44 @@ class PersonaController extends Controller
         $mb->apellido_m = $persona['0']['apellido_m'];
         $mb->fecha_nacimiento = $persona['0']['fecha_nacimiento'];
         $mb->rfc =$persona['0']['rfc'];
-        $mb->id_direcciones = 1;
+        $mb->id_direcciones = $auz;
         $mb->adeudo = $request->pago;
-        $mb->id_instutuion =6;
+        $mb->id_instutuion=$id_isti;
         $mb->estado = "activo";
         $mb->comportamiento ="activo";
         $mb->curp = $persona['0']['curp'];
         $mb->save();
+
+        $id_credito = mcredito::all()->last();
+        $anos = $request->ano;
+        $tipo_prestamo = $request->tipo;
+        if ($tipo_prestamo == 'mensual')
+        {
+            $fecha = new Carbon();
+            $totalfechas = $anos*12;
+            for($i = 1; $i < $totalfechas+1; $i++)
+            {
+                $fechas_pago = new fechas_pago();
+                $fechas_pago->id_credito = $id_credito['id'];
+                $fechas_pago->fechas = $fecha->addMonth()->format("Y-m-d");
+                $fechas_pago->monto = $request->prestamo;
+                $fechas_pago->save();
+            }
+        }
+        elseif ($tipo_prestamo = 'quincenal')
+        {
+            $fecha = new Carbon();
+            $totalfechas = $anos*26;
+            for($i = 1; $i < $totalfechas+1; $i++)
+            {
+                $fechas_pago = new fechas_pago();
+                $fechas_pago->id_credito = $id_credito['id'];
+                $fechas_pago->fechas = $fecha->addDay(15)->format('Y-m-d');
+                $fechas_pago->monto = $request->prestamo;
+                $fechas_pago->save();
+            }
+        }
+
 
 
         return response()->json([
