@@ -287,7 +287,7 @@ class PersonaController extends Controller
         $auz= $dire['id'];
         $insti=instituciones::where('nombre','=',"hstw")->get();
         $id_isti=$insti['0']['id'];
-        dd($id_isti);
+        dd($persona);
     }
 
 

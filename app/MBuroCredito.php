@@ -22,9 +22,12 @@ class MBuroCredito extends Model
     
     public function instituciones()
     {
-        return $this->hasMany(instituciones::class, 'id');
+        return $this->hasMany(instituciones::class,'id', 'id_instutuion');
     }
-    
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'foreign_key', 'local_key');
+    }
 }
     
     
