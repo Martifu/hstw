@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
     <!-- Modal -->
     <div class="modal fade modal-delete" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -151,7 +151,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar?</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -188,52 +188,52 @@
                         @csrf
                         <div class="form-group col-12 text-center" >
                             <h5>Nombre: </h5>
-                            <input required class="form-control is-valid" name="nombre" class="nombren" style="width:100%; ">
+                            <input required class="form-control " name="nombrenew" class="nombren" style="width:100%; ">
                         </div>
                         <div class="form-group col-6" style="" >
                             <h5>Apellido Paterno:</h5>
-                            <input required class="form-control is-valid" name="apellido_p" class="apellido_pn">
+                            <input required class="form-control " name="apellido_pnew" class="apellido_pn">
                         </div>
                         <div class="form-group col-6" >
                             <h5>Apellido Materno:</h5>
-                            <input required class="form-control is-valid" name="apellido_m" class="apellido_mn" style="width: 180px;">
+                            <input required class="form-control " name="apellido_mnew" class="apellido_mn" style="width: 180px;">
                         </div>
                         <div class="form-group col-6">
                             <h5>RFC:</h5>
-                            <input required class="form-control is-valid" name="rfc" class="rn" style="">
+                            <input required class="form-control " name="rfcnew" class="rn" style="">
                         </div>
                         <div class="form-group col-6">
                             <h5>Curp:</h5>
-                            <input required class="form-control is-valid" name="curp" class="cn"  style="width: 180px;">
+                            <input required class="form-control " name="curpnew" class="cn"  style="width: 180px;">
                         </div>
                         <div class="form-group col-6" style="">
                             <h5>Fecha de nacimiento:</h5>
-                            <input required class="form-control is-valid" name="nacimiento" class="nacimienton">
+                            <input required class="form-control " name="nacimientonew" class="nacimienton">
                         </div>
                         <div class="form-group col-6">
                             <h5>Calle:</h5>
-                            <input required class="form-control is-valid" name="calle" class="calle"  style="width: 180px;">
+                            <input required class="form-control " name="callenew" class="calle"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Numero:</h5>
-                            <input required class="form-control is-valid" name="numero" class="numero"  style="width: 180px;">
+                            <input required class="form-control " name="numeronew" class="numero"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Calles:</h5>
-                            <input required class="form-control is-valid" name="calles" class="calles"  style="width: 180px;">
+                            <input required class="form-control " name="callesnew" class="calles"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Codigo Postal:</h5>
-                            <input required class="form-control is-valid" name="cp" class="cp"  style="width: 180px;">
+                            <input required class="form-control " name="cpnew" class="cp"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Colonia:</h5>
-                            <input required class="form-control is-valid" name="colonia" class="colonia"  style="width: 180px;">
+                            <input required class="form-control " name="colonianew" class="colonia"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Ciudad:</h5>
-                            <input required class="form-control is-valid" name="ciudad" class="ciudad"  style="width: 180px;">
+                            <input required class="form-control " name="ciudadnew" class="ciudad"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Estado:</h5>
-                            <input required class="form-control is-valid" name="estado" class="estado"  style="width: 180px;">
+                            <input required class="form-control " name="estadonew" class="estado"  style="width: 180px;">
                         </div><div class="form-group col-6">
                             <h5>Pais:</h5>
-                            <input required class="form-control is-valid" name="pais" class="pais"  style="width: 180px;">
+                            <input required class="form-control " name="paisnew" class="pais"  style="width: 180px;">
                         </div>
                     </div>
                 </div>
@@ -272,6 +272,7 @@
                     }
                 })
             });
+
             $(".table").on('click','.btn-delete',function () {
                 $(".modal-delete").modal("show");
                 var id = $(this).val();
@@ -315,21 +316,22 @@
                 $('.modal-create').modal('show');
 
                 $(".reg").click(function () {
-                    var nombre = $('.nombren').val();
-                    var apellido_p = $('.apellido_pn').val();
-                    var apellido_m = $('.apellido_mn').val();
-                    var nacimiento = $('.nacimienton').val();
-                    var curp = $('.cn').val();
-                    var rfc = $('.rn').val();
+                    var nombre = $("input[name=nombrenew]").val();
+                    var apellido_p = $("input[name=apellido_pnew]").val();
+                    var apellido_m = $("input[name=apellido_mnew]").val();
+                    var nacimiento = $("input[name=nacimientonew]").val();
+                    var curp = $("input[name=curpnew]").val();
+                    var rfc = $("input[name=rfcnew]").val();
                     var token = $("input[name=_token]").val();
-                    var calle= $('.calle').val();
-                    var numero= $('.numero').val();
-                    var calles= $('.calles').val();
-                    var cp= $('.cp').val();
-                    var colonia= $('.colonia').val();
-                    var ciudad= $('.ciudad').val();
-                    var estado= $('.estado').val();
-                    var pais= $('.pais').val();
+                    var pais =$("input[name=paisnew]").val();
+                    var estado =$("input[name=estadonew]").val();
+                    var ciudad =$("input[name=ciudadnew]").val();
+                    var colonia =  $("input[name=colonianew]").val();
+                    var calles =  $("input[name=callesnew]").val();
+                    var calle =  $("input[name=callenew]").val();
+                    var numero =  $("input[name=numeronew]").val();
+                    var cp = $("input[name=cpnew]").val();
+                    console.log(nombre);
 
                     $.ajax({
                         url: '/registrar',
@@ -353,12 +355,13 @@
                             _token: token
                         },
                         success: function (response) {
-                            console.log(response)
+
                         }
-                    });
-                    location.reload();
-                })
+                    })
+                });
+                location.reload();
             });
+
             $(".table").on('click','.btn-inf',function () {
                 $(".modal-inf").modal("show");
                 var id = $(this).val();

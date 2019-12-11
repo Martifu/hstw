@@ -12,7 +12,7 @@
 
 */
 
-Route::post('/registrar','PersonaController@nuevapersona');
+Route::POST('/registrar','PersonaController@nuevapersona');
 
 Route::post('calcularprestamo', "PersonaController@calcularprestamo");
 

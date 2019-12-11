@@ -215,7 +215,7 @@ class PersonaController extends Controller
         $rfc = $request->rfc;
         $direccion = new Direccion();
         if ($nombre != null) {
-            $persona->nombre = $nombre;
+            $persona->nombre =$nombre;
         }
         if ($apellido_p != null) {
             $persona->apellido_p = $apellido_p;
@@ -449,8 +449,8 @@ class PersonaController extends Controller
 
         $insti=instituciones::where('nombre','=',"hstw")->get();
         $id_isti=$insti['0']['id'];
-        
-        
+
+
 
 
 
