@@ -30,7 +30,7 @@
     <div class="sidebar" data-color="purple">
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="/" class="simple-text">
                     <img class="" src="{{asset("img/Logo.png")}}" width="100">
                 </a>
             </div>
