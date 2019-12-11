@@ -46,21 +46,21 @@ class PersonaController extends Controller
 
 
     public function verificarBuro(Request $request){
-        
+
             if($request->rfc != null)
             {
                 $personaBuro = MBuroCredito::where('rfc', '=', $request->rfc)->with('instituciones')->get();
-    
+
             }
             if($request->curp != null){
                 $personaBuro = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
             }
-            
-            
+
+
                 if($request->fecha_nacimiento != null){
                 $personaBuro = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
             }
-            
+
              if($request->nombre != null){
                 $personaBuro = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
             }
@@ -117,6 +117,41 @@ class PersonaController extends Controller
         $nacimiento = $request->nacimiento;
         $curp = $request->curp;
         $rfc = $request->rfc;
+        $direccion = Direccion::where('id_persona', '=', $request->id)->first();
+        $calle = $request->calle;
+        $numero = $request->numero;
+        $calles = $request->calles;
+        $cp = $request->cp;
+        $colonia = $request->colonia;
+        $ciudad = $request->ciudad;
+        $estado = $request->estado;
+        $pais = $request->pais;
+
+        if ( $pais!= null) {
+            $direccion->pais =$pais ;
+        }
+        if ( $estado!= null) {
+            $direccion->estado = $estado;
+        }
+        if ($ciudad != null) {
+            $direccion->ciudad = $ciudad;
+        }
+        if ( $colonia!= null) {
+            $direccion->colonia =$colonia ;
+        }
+        if ( $calles!= null) {
+            $direccion->calles =$calles ;
+        }
+        if ($calle != null) {
+            $direccion->celle =$calle ;
+        }
+        if ( $cp!= null) {
+            $direccion->cp =$cp ;
+        }
+        if ( $numero!= null) {
+            $direccion->numero =$numero ;
+        }
+
 
         if ($nombre != null) {
             $persona->nombre = $nombre;
@@ -133,6 +168,7 @@ class PersonaController extends Controller
         if ($rfc != null) {
             $persona->rfc = $rfc;
         }
+        $direccion->save();
         $persona->save();
         return $persona;
     }
@@ -140,13 +176,16 @@ class PersonaController extends Controller
     public function borrarper(Request $request)
     {
         $persona = Persona::find($request->id);
+        $direccion = Direccion::where('id_persona', '=', $request->id)->first();
+        $direccion->delete();
         $persona->delete();
     }
 
     public function traerpersona(Request $request)
     {
         $persona = Persona::find($request->id);
-        return $persona;
+        $direccion = Direccion::where('id_persona', '=', $request->id)->first();
+        return compact('persona','direccion');
     }
 
     public function nuevapersona(Request $request)
@@ -232,12 +271,12 @@ class PersonaController extends Controller
         if($request->curp != null){
             $persona = MBuroCredito::where('curp', '=', $request->curp)->with('instituciones')->get();
         }
-        
-        
+
+
             if($request->fecha_nacimiento != null){
             $persona = MBuroCredito::where('fecha_nacimiento', '=', $request->fecha_nacimiento)->with('instituciones')->get();
         }
-        
+
          if($request->nombre != null){
             $persona = MBuroCredito::where('nombre', '=', $request->nombre)->with('instituciones')->get();
         }
@@ -297,7 +336,8 @@ class PersonaController extends Controller
                 $a = new Carbon();
                 $date = Carbon::now();
                 $date = $date->format('d-m-Y');
-                $a= Carbon::now();
+                $fecha=$request->fecha;
+                $a->setDateFrom($fecha);
                 $Prestamo['anos']=$anos;
                 $Prestamo['monto_solicitado']=$monto;
                 $Prestamo['pago']=$t_pago;
@@ -311,9 +351,9 @@ class PersonaController extends Controller
                     $Prestamo['pagoapagar']=$Prestamo['total']/ $Prestamo['total_pagos'];
                     $p=$Prestamo['total'];
                     $auxiliar=$p;
-                    $mes=$a->get('month');
 
                     for ($i = 1; $i < $Prestamo['total_pagos']+1; $i++){
+
                         $fechas[$i]=$a->addMonth(1)->format('d-m-Y');
                         $pagospendientes[$i]= $auxiliar-$Prestamo['pagoapagar'];
                         $auxiliar=$auxiliar-$Prestamo['pagoapagar'];
