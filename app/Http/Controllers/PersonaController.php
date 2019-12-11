@@ -98,10 +98,10 @@ class PersonaController extends Controller
             $x="si";
         }
         else {
-            if ($rv<=3000)
+            if ($rv<=3000){
             $credito ="yellow";
             $hr='asignarcredito/'.$persona['0']['id'];
-            $x="si";
+            $x="si";}
         }
 
 
@@ -112,7 +112,8 @@ class PersonaController extends Controller
             'personaBuro' => $personaBuro,
             'persona' => $persona,
             'color'=>$credito,
-            'href'=>$hr
+            'href'=>$hr,
+            'rv'=>$rv
         ]);
 
     }
