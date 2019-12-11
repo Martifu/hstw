@@ -57,6 +57,7 @@
                                 <label for="">Monto solicitado:</label><br>
                                 <input name="monto" class="form-control is-valid" style="width: 100%;" placeholder="$$$$$$$$$$$$$$$$$$$$$$$$$$$" required>
                             </div>
+
                             <div class="col-12 form-group">
                                 <label for="">Cantidad de años del prestamo:</label>
                                 <select class="form-control" name="anos" class="custom-select" required>
@@ -93,10 +94,16 @@
                                     <option>35</option>
                                 </select>
                             </div>
+                            <div class="form-group col-12">
+                                <label for="">Fecha Inicial de pago:</label><br><br>
+                                <input type="text" id="fecha" name="fecha" />
+                                <br>
+                            </div>
                     </div>
                 </div>
 
-                <div class="modal-footer">
+
+                <div class="modal-footer container">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" name="update" class="btn btn-success act">Calcular Prestamo</button>
                     </form>
@@ -110,7 +117,11 @@
 
 @section('javascript')
     <script>
+        $( document ).ready(function() {
+            $('#fecha').datepicker();
+        });
         $(document).ready(function () {
+
             $.ajax({
                 url: '/traerpersonas',
                 dataType: 'json',
@@ -145,9 +156,9 @@
                     _token: token
                 },
                 success: function (response) {
-                    $("input[name=id]").attr("placeholder", response['id']);
-                    $(".nombre").html(response['nombre'] + ' ' + response['apellido_p']);
-                    $("#curpCliente").val(response['curp']);
+                    $("input[name=id]").attr("placeholder", response.persona['id']);
+                    $(".nombre").html(response.persona['nombre'] + ' ' + response.persona['apellido_p']+ ' ' + response.persona['apellido_m']);
+                    $("#curpCliente").val(response.persona['curp']);
                 }
             });
 

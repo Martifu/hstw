@@ -19,6 +19,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="css/baseAdmin.scss" rel="stylesheet">
     <link href="fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="datepicker/css/datepicker.css" rel="stylesheet">
     <link href="css/login.scss" rel="stylesheet" />
 
 </head>
@@ -41,7 +42,7 @@
                     </a>
                 </li>
                 <li id="calcularPrestamos">
-                    <a class="nav-link" href="./user.html">
+                    <a class="nav-link" href="/prestamos">
                         <img src="{{asset("img/ic_shopping_basket_24px.png")}}">
                         <p>Calcular prestamos</p>
                     </a>
