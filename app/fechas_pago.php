@@ -12,6 +12,6 @@ class fechas_pago extends Model
 
     function credito_fechas()
     {
-        return $this->hasMany(mcredito::Class, 'id_credito', 'id');
+        return $this->hasMany(mcredito::Class, 'id', 'id_credito');
     }
 }

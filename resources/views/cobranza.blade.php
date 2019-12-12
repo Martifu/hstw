@@ -74,7 +74,6 @@
                         <thead>
                         <tr>
                             <th scope="col">Pago $</th>
-                            <th scope="col">Descripcion</th>
                             <th scope="col">Fecha de pago</th>
                             <th scope="col">Limite de fecha de pago</th>
                         </tr>

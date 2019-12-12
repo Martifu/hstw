@@ -11,13 +11,19 @@ $(document).ready(function () {
                 type: 'post',
                 data: {id:id_cliente, _token:token },
                 success:function (response) {
+                    function sumarDias(fecha, dias){
+                        date = new Date(fecha);
+                        date.setDate(date.getDate() + dias);
+                        formato = date.toLocaleDateString();
+                        return formato;
+                    }
                     $.each(response, function (index, value) {
+                        console.log(value[0,'credito_fechas']);
                         $('#datos_tabla').append(
                             "<tr>"+
-                            "<td>"+value['nombre']+"</td>"+
-                            "<td>"+value['nombre']+"</td>"+
-                            "<td>"+value['nombre']+"</td>"+
-                            "<td>"+value['nombre']+"</td>"+
+                            "<td>$"+value[0, 'credito_fechas'][0]['prestamo']+"</td>"+
+                            "<td>"+value[0, 'fechas']+"</td>"+
+                            "<td>"+sumarDias(value[0, 'fechas'], 3)+"</td>"+
                             "</tr>"
                         )
                     })
